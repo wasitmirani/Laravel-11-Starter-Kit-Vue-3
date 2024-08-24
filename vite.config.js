@@ -17,6 +17,8 @@ export default defineConfig({
       input: [
         'resources/css/app.css',
         'resources/ts/backend/app.ts',
+        'resources/ts/frontend/app.ts',
+
       ],
       refresh: true,
     }),

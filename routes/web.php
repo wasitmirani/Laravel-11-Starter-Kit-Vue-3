@@ -3,10 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\BackendController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\frontend\FrontendController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -20,4 +17,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 // ->middleware(['auth', 'verified']);
+Route::get('/{path?}',[FrontendController::class, 'index']);
 Route::get('/app/{module?}/{feature?}/{action?}', [BackendController::class, 'index']);
