@@ -1,30 +1,24 @@
 import { defineConfig } from 'vite';
+// import path from 'path'; // Import path module
+import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue'; 
-
+import dynamicImport from 'vite-plugin-dynamic-import'; // Uncomment if needed
 
 export default defineConfig({
-    plugins: [
-        laravel({
-            input: [
-                'resources/css/app.css',
-                'resources/ts/app.ts',
-            ],
-            refresh: true,
-        }),
-        vue(),
-        // vue({ 
-        //     template: {
-        //         transformAssetUrls: {
-        //             base: null,
-        //             includeAbsolute: false,
-        //         },
-        //     },
-        // }),
-    ],
-    resolve: { 
-        alias: {
-            vue: 'vue/dist/vue.esm-bundler.js',
-        },
-    },
+//   resolve: {
+//     alias: {
+//       '@': path.resolve(__dirname, 'resources/ts/backend/Pages'), // Ensure path is correct
+//     },
+//   },
+  plugins: [
+    vue(),
+    dynamicImport(), // Uncomment if using dynamic imports
+    laravel({
+      input: [
+        'resources/css/app.css',
+        'resources/ts/backend/app.ts',
+      ],
+      refresh: true,
+    }),
+  ],
 });
