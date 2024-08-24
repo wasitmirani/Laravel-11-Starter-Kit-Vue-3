@@ -12,8 +12,8 @@ Route::get('/me', function (Request $request) {
 
 
 // Route::get('/me', static fn () => response()->json(['user_name'=>"wasitmirani"]));
-
-Route::prefix('/app')->middleware('auth:api')->group(function () {
+// ->middleware('auth:api')
+Route::prefix('/app')->group(function () {
     Route::post('/password/update', [UserController::class, 'updatePassword']);
     Route::resource('user', UserController::class);
     Route::resource('role',RoleController::class);

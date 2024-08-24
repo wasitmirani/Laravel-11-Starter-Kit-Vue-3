@@ -4,18 +4,23 @@ namespace App\Services;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
 
-class UserService implements UserRepositoryInterface
+class UserService 
 {
+
+    public function __construct(
+        protected UserRepositoryInterface $userRepository
+    ) {
+    }
 
     
     public function store(array $data)
     {
-        return $this->store($data);
+        return $this->userRepository->store($data);
     }
 
-    public function update(array $data, $id)
+    public function update($id,array $data)
     {
-        return $this->update($data, $id);
+        return $this->userRepository->update($id,$data);
     }
 
     public function delete($id)
@@ -25,7 +30,8 @@ class UserService implements UserRepositoryInterface
 
     public function all($is_paginate)
     {
-        return $this->all($is_paginate);
+     
+        return  $this->userRepository->all((bool)$is_paginate);
     }
 
     public function find($id)

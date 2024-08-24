@@ -17,8 +17,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     // Implement UserRepositoryInterface methods if needed
-    public function all($is_paginate=true)
+    public function all($is_paginate)
     {
+       
         $query = request('query');
         $users = $this->model->latest()->with('roles','permissions','country');
     
@@ -37,12 +38,12 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $users;
     }
 
-    public function store(array $data)
+    public function store(array $request)
     {
-        $request =(object) $data;
+        $request =(object) $request;
         $user_name = !empty($request->user_name) ? $request->user_name : strtolower(trim( $request->first_name." ".$request->first_name)) . rand(10, 1000900);
         $user_name = $this->generateUserName($user_name);
-        $new_result= $this->create([
+        $payload = !empty($request) ? $request : [
             'name' => $request->first_name." ".$request->first_name,
             'uuid'=>genUUID(),
             'slug' => setSlug( $request->first_name." ".$request->first_name),
@@ -61,7 +62,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             'lanuage_id' => $request->lanuage_id ?? null,
             'timezone_id' => $request->timezone_id ?? null,
             'organization' => $request->organization ?? null,
-        ]);
+        ];
+        $new_result= $this->create($payload);
         if(!empty( $request->role['id'])){
             // $role = Role::where('id', $request->role['id'])->first();
         //    $new_result->assignRole($role);
