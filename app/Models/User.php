@@ -3,13 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\LogsActivity;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -44,4 +45,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    // Your service's properties and methods
+
+    // public function createUser(array $data)
+    // {
+    //     // Logic to create a user
+    //     // $this->logActivity('Creating a new user', ['data' => $data]);
+    // }
 }
