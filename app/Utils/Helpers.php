@@ -2,7 +2,9 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Jenssegers\Agent\Agent;
 use App\Models\BrandingLabel;
+use App\Models\DeviceHistory;
 
 
 
@@ -95,7 +97,6 @@ function formatDate($date)
 
 function uploadImage($path)
 {
-
     if (request()->hasFile('image')) {
         $name = "/" . request()->file('image')->store($path); // Assuming $path is already defined
         $name = str_replace($path . '/', '', $name);
@@ -106,14 +107,12 @@ function uploadImage($path)
 }
 function getImagePath($type)
 {
-
     return "/public/images/" . $type;
 }
 
 
 function getCurrency()
 {
-
     return env('CURRENCY') ?? '$';
 }
 
@@ -140,4 +139,36 @@ function removeUrlFromThumbnail(string $type, string $value): string
     $pattern = url("/storage/images/{$type}/");
     // Remove the pattern from the $value
     return str_replace($pattern, '', $value);
+}
+
+function fetchGeoLocation(){
+    $ip = request()->ip();
+    if ($ip == "127.0.0.1")
+        $ip = "103.244.176.117";
+    $geo = unserialize(file_get_contents("http://ip-api.com/php/" . $ip));
+    return $geo ?? null;
+}
+function logDeviceHistory(){
+    $agent = new Agent();
+    $agent->setUserAgent(request()->header('User-Agent'));
+    // Determine the device type
+    if ($agent->isPhone()) {
+        $deviceType = 'mobile';
+    } elseif ($agent->isTablet()) {
+        $deviceType = 'tablet';
+    } else {
+        $deviceType = 'desktop';
+    }
+    DeviceHistory::create([
+        'user_id' => auth()->user()->id,
+        'device_name' => $agent->device(), // Device name (e.g., iPhone)
+        'browser' => $agent->browser(), // Browser name (e.g., Chrome)
+        'platform' => $agent->platform(), // OS name (e.g., iOS)
+        'device_id' => request()->header('X-Device-ID'),
+        'device_type'=> $deviceType,
+        'os_version' => $agent->version($agent->platform()),
+        'app_version' => request()->header('X-App-Version'),
+        'ip_address' => request()->ip(),
+        'last_login_at' => now(),
+    ]);
 }
