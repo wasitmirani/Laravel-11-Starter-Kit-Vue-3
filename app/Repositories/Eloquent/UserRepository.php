@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\Rules;
 use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
@@ -15,8 +16,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         parent::__construct($model);
     }
-
-    // Implement UserRepositoryInterface methods if needed
     public function all($is_paginate)
     {
        
@@ -78,6 +77,12 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function update($id,array $data)
     {
         $request =(object) $data;
+        if($request->password!=""){
+            $request->validate([
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+           $this->update($id,['password'=>Hash::make($request->password)]);
+        }
         $update_user= $this->update($id,[
                 'name' => $request->first_name." ".$request->first_name,
                 'slug' => setSlug( $request->first_name." ".$request->first_name),
@@ -93,7 +98,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
                 'country_id' => $request->country['id'] ?? null,
                 'organization' => $request->organization ?? null,
             ]);
-            $user=User::where('id', $id)->first();
+            // $user=$this->find($id);
 
             // $role = Role::where('id', $request->role['id'])->first();
             // $user->roles()->sync($role);

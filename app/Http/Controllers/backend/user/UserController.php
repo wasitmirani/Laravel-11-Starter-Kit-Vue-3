@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Controllers\Controller;
-use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -98,12 +97,6 @@ class UserController extends Controller
             'thumbnail' => 'required',
             'role'=>'required',
         ]);
-        if($request->password!=""){
-            $request->validate([
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            ]);
-           User::where('id',$id)->update(['password'=>Hash::make($request->password)]);
-        }
         $user = $this->userService->update($request->all(), $id);
 
         return responseJson('user updated successfully',['user'=>$user],true);
