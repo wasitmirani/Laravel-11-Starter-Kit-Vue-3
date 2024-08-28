@@ -5,6 +5,7 @@ use Illuminate\Support\Str;
 use Jenssegers\Agent\Agent;
 use App\Models\BrandingLabel;
 use App\Models\DeviceHistory;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -149,6 +150,7 @@ function fetchGeoLocation(){
     return $geo ?? null;
 }
 function logDeviceHistory(){
+    try {
     $agent = new Agent();
     $agent->setUserAgent(request()->header('User-Agent'));
     // Determine the device type
@@ -169,6 +171,11 @@ function logDeviceHistory(){
         'os_version' => $agent->version($agent->platform()),
         'app_version' => request()->header('X-App-Version'),
         'ip_address' => request()->ip(),
+        'device_information' =>fetchGeoLocation(),
         'last_login_at' => now(),
     ]);
+} catch (\Throwable $th) {
+    Log::error("logDeviceHistory: has failed to log device history for {$th->getMessage()} | {$th->getTraceAsString()} | Time:".now() );
+    throw $th;
+}
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('device_id')->nullable();
             $table->string('device_type')->nullable();
             $table->string('os_version')->nullable();
+            $table->string('app_version')->nullable();
             $table->json('device_information')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
