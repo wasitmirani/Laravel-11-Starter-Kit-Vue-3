@@ -25,7 +25,13 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
+        $user=auth()->user();
+        $token = auth()->user()->createToken(genUUID())->plainTextToken;
+        $user->token=$token;
+        $user->last_login=Date('Y-m-d H:i:s');
+        $user->save();
+        session(['login' => true]);
+        logDeviceHistory();
         $request->session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));
