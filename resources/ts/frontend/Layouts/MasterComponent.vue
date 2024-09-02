@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-
+import HeadComponent from './partials/HeadComponent.vue';
+import SideBarMenuComponent from './partials/SideBarMenuComponent.vue';
 </script>
 <template >
   
@@ -7,7 +8,7 @@
   <div class="layout-wrapper layout-content-navbar  ">
     <div class="layout-container">
       <!-- Menu -->
-   
+      <SideBarMenuComponent/>
       <!-- / Menu -->
 
 
@@ -16,7 +17,7 @@
       <div class="layout-page">
         <!-- Navbar -->
 
-        <!-- Head Component -->
+        <HeadComponent/>
 
         <!-- / Navbar -->
 

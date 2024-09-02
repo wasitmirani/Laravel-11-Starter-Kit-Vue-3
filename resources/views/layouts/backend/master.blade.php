@@ -30,7 +30,7 @@
 
 
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset('/backend/assets/vendor/fonts/remixicon/remixicon.css') }}')}}">
+    <link rel="stylesheet" href="{{ asset('/backend/assets/vendor/fonts/remixicon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('/backend/assets/vendor/fonts/flag-icons.css') }}">
 
     <!-- Menu waves for no-customizer fix -->
@@ -53,10 +53,10 @@
     <link rel="stylesheet" href="{{ asset('/backend/assets/vendor/libs/swiper/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('/backend/assets/vendor/css/pages/cards-statistics.css') }}">
 
-    <script src="{{ asset('/backend/assets/vendor/js/helpers.js') }}')}}"></script>
+    <script src="{{ asset('/backend/assets/vendor/js/helpers.js') }}"></script>
 
-    <script src="{{ asset('/backend/assets/vendor/js/template-customizer.js') }}')}}"></script>
-    <script src="{{ asset('/backend/assets/js/config.js') }}')}}"></script>
+    <script src="{{ asset('/backend/assets/vendor/js/template-customizer.js') }}"></script>
+    <script src="{{ asset('/backend/assets/js/config.js') }}"></script>
 </head>
 
 <body>
@@ -65,8 +65,7 @@
     <div id="app">
 
     </div>
-    @vite(['resources/ts/backend/app.ts', 'resources/css/app.css'])
-    {{-- <script type="module" src="{{ asset('/build/assets/app.ef37314d.js')}}') }}"></script> --}}
+   
 
 
     <script>
@@ -96,9 +95,10 @@
     <script src="{{ asset('/backend/assets/vendor/libs/node-waves/node-waves.js') }}"></script>
     <script src="{{ asset('/backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('/backend/assets/vendor/libs/hammer/hammer.js') }}"></script>
-    <script src="{{ asset('/backend/assets/vendor/libs/i18n/i18n.js') }}"></script>
+    {{-- <script src="{{ asset('/backend/assets/vendor/libs/i18n/i18n.js') }}"></script> --}}
     <script src="{{ asset('/backend/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
     <script src="{{ asset('/backend/assets/vendor/js/menu.js') }}"></script>
+ @vite(['resources/ts/backend/app.ts', 'resources/css/app.css'])
     <!-- Vendors JS -->
     <script src="{{ asset('/backend/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
     <script src="{{ asset('/backend/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
@@ -106,6 +106,9 @@
     <!-- Main JS -->
     <script src="{{ asset('/backend/assets/js/main.js') }}"></script>
     <!-- Page JS -->
+   
+     {{-- <script type="module" src="{{ asset('/build/assets/app.ef37314d.js')}}') }}"></script> --}}
+
     <script src="{{ asset('/backend/assets/js/app-ecommerce-dashboard.js') }}"></script>
 </body>
 </html>

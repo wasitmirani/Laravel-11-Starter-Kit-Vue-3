@@ -1,11 +1,11 @@
 
 <script setup>
+import MasterComponent from './Layouts/MasterComponent.vue';
 
-console.log("jj");
 </script>
 <template >
     <div>
-        <RouterView />
+        <MasterComponent/>
     </div>
 
 
