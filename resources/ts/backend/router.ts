@@ -13,7 +13,7 @@ const setRoute = (url: string, name: string, path: string, permission: string | 
         path: per_fix+url,
         name: name,
         component: ()=> getComponent(path),
-        meta: { permissions: permission ?? null },
+        meta: { permissions: permission ?? null},
 
     }
 }
@@ -26,6 +26,7 @@ const routes = [
     setRoute('/:catchAll(.*)', '404', 'error/404', null),
     setRoute('/unauthorized/user', '401', 'error/401', null),
     setRoute('/dashboard', 'dashboard', 'dashboard/Dashbord', null),
+    setRoute('/users', 'user', 'users/User', null),
     // {
     //     path: per_fix+'/dashboard',
     //     name: 'dashboard',

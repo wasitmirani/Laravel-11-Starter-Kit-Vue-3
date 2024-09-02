@@ -4,8 +4,6 @@
 
 <template>
     <div>
-
-   
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
 
@@ -68,6 +66,18 @@
 
         <ul class="menu-inner py-1">
           <!-- Dashboards -->
+          <li class="menu-item">
+            <router-link to="/app/dashboard" class="menu-link">
+              <i class="menu-icon tf-icons ri-wechat-line"></i>
+              <div data-i18n="Chat">Dashboard</div>
+            </router-link>
+          </li>
+          <li class="menu-item">
+            <router-link to="/app/users" class="menu-link">
+              <i class="menu-icon tf-icons ri-wechat-line"></i>
+              <div data-i18n="Chat">Users</div>
+            </router-link>
+          </li>
           <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons ri-home-smile-line"></i>

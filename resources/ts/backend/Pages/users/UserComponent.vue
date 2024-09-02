@@ -1,16 +1,13 @@
 
 <template >
-    <div>
-    <div class="row g-6 mb-6">
-        
+  <div> 
+  <div class="row g-6 mb-6">
         <!-- Sales Overview-->
         <div class="col-lg-6">
           <div class="card h-100">
             <div class="card-header">
               <div class="d-flex justify-content-between">
-                <h5 class="mb-1">Sales Overview
-                    
-                </h5>
+                <h5 class="mb-1">Users Overview</h5>
                 <div class="dropdown">
                   <button class="btn btn-text-secondary rounded-pill text-muted border-0 p-1" type="button"
                     id="salesOverview" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -1001,6 +998,9 @@
         </div>
         <!--/ visits By Day Chart-->
       </div>
-    </div>
+      </div>
 </template>
 
+<style lang="">
+    
+</style>
