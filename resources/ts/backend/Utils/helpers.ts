@@ -3,7 +3,7 @@
 
 // import { useNotification } from "@kyvg/vue3-notification";
 import { useRoute } from "vue-router";
-import { ref, onMounted,Ref,UnwrapRef,reactive  } from "vue";
+import { ref, onMounted,Ref,UnwrapRef,reactive, UnwrapNestedRefs  } from "vue";
 import router  from "../router"
 // import Swal from 'sweetalert2'
 // useNotification()
@@ -14,12 +14,11 @@ class Helper
 
     public static base_url =window.location.origin;
    
-    useDynamicReactive<T extends object>(initialValue: T): T {
-        const dynamicReactive = reactive(initialValue);
-        return dynamicReactive;  
+    useDynamicReactive<T extends object>(initialValue: T): UnwrapNestedRefs<T> {
+        return reactive(initialValue);
     }
-    useDynamicRef<T>(initialValue: T): Ref<T extends object ? T & UnwrapRef<T> : T> {
-        return ref<T>(initialValue) ;
+    useDynamicRef<T>(initialValue: T): Ref<UnwrapRef<T>> {
+        return ref(initialValue) as Ref<UnwrapRef<T>>;
     }
     useDynamicOnMounted(callback?: () => void) {
         onMounted(() => {
