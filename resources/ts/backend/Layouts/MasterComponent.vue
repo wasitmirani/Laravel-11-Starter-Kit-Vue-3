@@ -2,14 +2,6 @@
 import FooterComponent from "./partials/FooterComponent.vue";
 import HeadComponent from "./partials/HeadComponent.vue";
 import SideBarMenuComponent from "./partials/SideBarMenuComponent.vue";
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-
-// Determine the direction of the transition based on route changes
-const route = useRoute();
-const transitionName = computed(() => {
-  return route.name === 'home' ? 'slide-right' : 'slide-left';
-});
 </script>
 <template>
   <!-- Layout wrapper -->
