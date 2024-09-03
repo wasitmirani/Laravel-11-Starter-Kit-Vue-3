@@ -2,15 +2,39 @@
 import { Helpers } from "../../Utils/helpers";
 import Sidebar from "../../Utils/sidebar";
 
-let menuList: any[] = Helpers.useDynamicReactive<any[]>([]);
+const menuList: any = Helpers.useDynamicRef([]);
 
 Helpers.useDynamicOnMounted(() => {
   let sidebar = new Sidebar();
   const fetchedMenuList = sidebar.getMenuList();
-  menuList = fetchedMenuList;
-  console.log("menuList", menuList);
+  menuList.value = fetchedMenuList;
+  console.log("menuList", menuList.value);
 });
+function isActive (link: string){
+  console.log("isActive",  Helpers.route().path == link);
+  console.log("link", link);
+  return Helpers.route().path === link ? 'active' : '';
 
+}
+function isAllowed(value: string): boolean {
+    console.log("isAllowed", value);
+    return true;
+    // if (permissions.includes(value)) {
+    //     return true;
+    // } else {
+    //     return false;
+    // }
+}
+ const getMenuClass =(type: string)=> {
+    switch (type) {
+        case "heading":
+            return "menu-header fw-medium mt-4";
+            break;
+        default:
+            return "menu-item";
+            break;
+    }
+}
 </script>
 
 <template>
@@ -77,7 +101,7 @@ Helpers.useDynamicOnMounted(() => {
 
         <ul class="menu-inner py-1">
           <!-- Dashboards -->
-          <li class="menu-item">
+          <!-- <li class="menu-item">
             <router-link to="/app/dashboard" class="menu-link">
               <i class="menu-icon tf-icons ri-wechat-line"></i>
               <div data-i18n="Chat">Dashboard</div>
@@ -126,7 +150,29 @@ Helpers.useDynamicOnMounted(() => {
 
    <li class="menu-header mt-5">
     <span class="menu-header-text" data-i18n="Apps & Pages">Apps &amp; Pages</span>
-  </li>
+  </li> -->
+
+  <li   :class="getMenuClass(item.type)" v-for="item in menuList" v-if="menuList.length>0">
+    <span class="menu-header-text" v-if="item.type == 'heading'" :data-i18n="item.title">{{ item.title }}</span>
+    <router-link   :to="item.link" v-if="item.type == 'single' && isAllowed(item.can)" :class="`menu-link ${isActive(item.link)}`">
+        <i :class="`menu-icon tf-icons  ${item.icon}`"></i>
+        <div :data-i18n="item.title">{{ item.title }}</div>
+    </router-link>
+    <a  href="javascript:void(0);" v-if="item.type == 'multi' && isAllowed(item.can)"
+        class="menu-link menu-toggle">
+        <i :class="`menu-icon tf-icons  ${item.icon}`"></i>
+        <div :data-i18n="item.title">{{ item.title }}</div>
+        <!-- <div class="badge bg-primary rounded-pill ms-auto">5</div> -->
+    </a>
+    <ul class="menu-sub" v-if="item.type == 'multi' && isAllowed(item.can)">
+        <!-- active -->
+        <li :class="`menu-item  ${isActive(submenu.link)}`" v-for="submenu in item.sub_menu">
+            <router-link :to="submenu.link" class="menu-link">
+                <div :data-i18n="submenu.title"> {{ submenu.title }}</div>
+            </router-link>
+        </li>
+    </ul>
+</li>
          
         </ul>
 

@@ -20,13 +20,13 @@ const setRoute = (url: string, name: string, path: string, permission: string | 
 
 const routes = [
     {
-        path: "/",
+        path: "/app",
         redirect: { name: 'dashboard' }
     },
-    setRoute('/:catchAll(.*)', '404', 'error/404', null),
+    setRoute('/:catchAll(.*)', '404', 'errors/404', null),
     setRoute('/unauthorized/user', '401', 'error/401', null),
     setRoute('/dashboard', 'dashboard', 'dashboard/Dashbord', null),
-    setRoute('/users', 'user', 'users/User', null),
+    setRoute('/settings/users', 'user', 'users/User', null),
     // {
     //     path: per_fix+'/dashboard',
     //     name: 'dashboard',

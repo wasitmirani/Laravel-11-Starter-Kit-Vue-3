@@ -9,3 +9,5 @@ declare module "*.ts" {
     const content: any; // Adjust the type based on your use case
     export default content;
   }
+
+  

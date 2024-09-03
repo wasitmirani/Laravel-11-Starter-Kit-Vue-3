@@ -26,7 +26,6 @@ const transitionName = computed(() => {
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->
-
           <div class="flex-grow-1 container-p-y container-fluid">
             <router-view v-slot="{ Component }">
                 <Transition  name="slide-fade">
