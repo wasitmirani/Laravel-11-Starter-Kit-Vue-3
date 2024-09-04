@@ -101,11 +101,11 @@
                 <form id="formAuthentication" class="mb-5 fv-plugins-bootstrap5 fv-plugins-framework"
                     action="{{ route('password.store') }}" method="POST" novalidate="novalidate">
                     @csrf
-
+                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
                     <div class="mb-5 form-password-toggle fv-plugins-icon-container">
                         <div class="input-group input-group-merge">
                             <div class="form-floating form-floating-outline">
-                                <input type="email" id="email" class="form-control" name="password"
+                                <input value="{{old('email', $request->email)}}" type="email" id="email" class="form-control" name="email"
                                     placeholder="············" aria-describedby="password">
                                 <label for="password">Email</label>
                                 <x-input-error :messages="$errors->get('email')" class="mt-2 invalid-feedback" />
@@ -122,8 +122,8 @@
                                 <input type="password" id="password" class="form-control" name="password"
                                     placeholder="············" aria-describedby="password">
                                 <label for="password">New Password</label>
-                                <x-input-error :messages="$errors->get('email')" class="mt-2 invalid-feedback" />
-
+                          
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2 invalid-feedback" />
                             </div>
                             <span class="input-group-text cursor-pointer"><i class="ri-eye-off-line"></i></span>
                         </div>
@@ -133,7 +133,7 @@
                     <div class="mb-5 form-password-toggle fv-plugins-icon-container">
                         <div class="input-group input-group-merge">
                             <div class="form-floating form-floating-outline">
-                                <input type="password" id="confirm-password" class="form-control" name="confirm-password"
+                                <input type="password" id="confirm-password" class="form-control" name="password_confirmation"
                                     placeholder="············" aria-describedby="password">
                                 <label for="confirm-password">Confirm Password</label>
                             </div>
@@ -146,7 +146,7 @@
                         Set new password
                     </button>
                     <div class="text-center">
-                        <a href="auth-login-basic.html" class="d-flex align-items-center justify-content-center">
+                        <a href="{{route('login')}}" class="d-flex align-items-center justify-content-center">
                             <i class="ri-arrow-left-s-line scaleX-n1-rtl ri-20px me-1_5"></i>
                             Back to login
                         </a>
