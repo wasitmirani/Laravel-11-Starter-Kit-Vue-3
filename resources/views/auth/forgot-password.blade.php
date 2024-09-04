@@ -33,8 +33,6 @@ Forgot Password
 @section('content')
 
     <div class="card p-md-7 p-1">
-    
-
         <!-- Forgot Password -->
         <div class="app-brand justify-content-center mt-5">
             <a href="index.html" class="app-brand-link gap-2">
