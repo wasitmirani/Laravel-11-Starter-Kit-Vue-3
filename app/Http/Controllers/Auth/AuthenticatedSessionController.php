@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
         logDeviceHistory();
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('backend.dashboard', absolute: false));
     }
 
     /**

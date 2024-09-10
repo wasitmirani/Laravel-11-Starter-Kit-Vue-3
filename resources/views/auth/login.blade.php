@@ -54,7 +54,7 @@ Login
   <div class="card p-md-7 p-1">
     <!-- Logo -->
     <div class="app-brand justify-content-center mt-5">
-      <a href="index.html" class="app-brand-link gap-2">
+      <a href="{{route('login')}}" class="app-brand-link gap-2">
         <span class="app-brand-logo demo">
         <span style="color:#666cff;">
         <svg width="268" height="150" viewbox="0 0 38 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -132,7 +132,7 @@ Login
 
       <p class="text-center">
         <span>New on our platform?</span>
-        <a href="auth-register-basic.html">
+        <a href="{{route('register')}}">
           <span>Create an account</span>
         </a>
       </p>

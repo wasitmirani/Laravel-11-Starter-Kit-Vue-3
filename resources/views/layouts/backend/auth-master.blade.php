@@ -25,6 +25,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="{{ asset('/backend/assets/vendor/fonts/remixicon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('/backend/assets/vendor/fonts/flag-icons.css') }}">
+  
     
     <!-- Menu waves for no-customizer fix -->
     <link rel="stylesheet" href="{{ asset('/backend/assets/vendor/libs/node-waves/node-waves.css') }}">
@@ -72,11 +73,10 @@
   <script src="{{ asset('/backend/assets/vendor/libs/popper/popper.js') }}"></script>
   <script src="{{ asset('/backend/assets/vendor/js/bootstrap.js') }}"></script>
   <script src="{{ asset('/backend/assets/vendor/libs/node-waves/node-waves.js') }}"></script>
-  <script src="{{ asset('/backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-  <script src="{{ asset('/backend/assets/vendor/libs/hammer/hammer.js') }}"></script>
-  <script src="{{ asset('/backend/assets/vendor/libs/i18n/i18n.js') }}"></script>
+
+
   <script src="{{ asset('/backend/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
-  <script src="{{ asset('/backend/assets/vendor/js/menu.js') }}"></script>
+
   
   <!-- endbuild -->
 
@@ -89,8 +89,14 @@
   <script src="{{ asset('/backend/assets/js/main.js') }}"></script>
   
 
+  @if(!Request::routeIs('register'))
   <!-- Page JS -->
   <script src="{{ asset('/backend/assets/js/pages-auth.js') }}"></script>
+  @else 
+  
+  <!-- Page JS -->
+  <script src="{{ asset('/backend/assets/js/pages-auth-multisteps.js')}}"></script>
+  @endif
   
 </body>
 

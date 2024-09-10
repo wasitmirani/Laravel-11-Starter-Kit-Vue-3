@@ -75,7 +75,7 @@
         </div>
         <!-- /Logo -->
         <div class="card-body mt-1">
-            <h4 class="mb-1">Forgot Password? 🔒</h4>
+            <h4 class="mb-1">Confirm Password? 🔒</h4>
             <p class="mb-5">
                 {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
             </p>
@@ -86,10 +86,11 @@
 
 
                 <div class="form-floating form-floating-outline mb-5">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email"
+                    <input type="text" class="form-control" id="password" name="password" placeholder="Password"
                         autofocus>
-                    <label>Email</label>
-                    <x-input-error :messages="$errors->get('email')" class="mt-2 invalid-feedback" />
+                   
+                    <label>Password</label>
+                    <x-input-error :messages="$errors->get('password')" class="mt-2 invalid-feedback" />
 
 
                 </div>
