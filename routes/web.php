@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\BackendController;
 use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
 // Route::middleware('auth')->group(function () {
@@ -14,7 +15,7 @@ use App\Http\Controllers\frontend\FrontendController;
 // });
 
 require __DIR__.'/auth.php';
-
+Route::get('/logout',[AuthenticatedSessionController::class,'destroy']);
 Route::get('/app', fn() => redirect('/app/dashboard'));
 
 Route::get('/{path?}',[FrontendController::class, 'index']);

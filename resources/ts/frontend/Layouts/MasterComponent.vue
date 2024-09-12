@@ -3,35 +3,22 @@ import HeadComponent from './partials/HeadComponent.vue';
 import SideBarMenuComponent from './partials/SideBarMenuComponent.vue';
 </script>
 <template >
-  
+
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar  ">
     <div class="layout-container">
       <!-- Menu -->
       <SideBarMenuComponent/>
       <!-- / Menu -->
-
-
-
       <!-- Layout container -->
       <div class="layout-page">
         <!-- Navbar -->
-
         <HeadComponent/>
-
         <!-- / Navbar -->
-
-
-
         <!-- Content wrapper -->
         <div class="content-wrapper">
-
           <!-- Content -->
-
           <div class="flex-grow-1 container-p-y container-fluid">
-
-
-
             <div class="row g-6 mb-6">
               <!-- Sales Overview-->
               <div class="col-lg-6">

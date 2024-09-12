@@ -1,5 +1,11 @@
-<script setup lang="ts"> 
+<script setup lang="ts">
+let auth_user = window.user;
 
+function logOut(event:any) {
+    event.preventDefault();
+    window.location.href = window.location.origin + '/logout';
+
+    }
 </script>
 <template >
     <nav
@@ -441,15 +447,11 @@
                 <i class="ri-money-dollar-circle-line ri-22px me-3"></i><span class="align-middle">Pricing</span>
               </a>
             </li>
-            <li>
-              <a class="dropdown-item" href="pages-faq.html">
-                <i class="ri-question-line ri-22px me-3"></i><span class="align-middle">FAQ</span>
-              </a>
-            </li>
+
             <li>
               <div class="d-grid px-4 pt-2 pb-1">
-                <a class="btn btn-sm btn-danger d-flex" href="auth-login-cover.html" target="_blank">
-                  <small class="align-middle">Logout</small>
+                <a @click="logOut" class="btn btn-sm btn-danger d-flex text-white" role="button" target="_blank">
+                  <small class="align-middle ">Logout</small>
                   <i class="ri-logout-box-r-line ms-2 ri-16px"></i>
                 </a>
               </div>
@@ -477,5 +479,5 @@
 </template>
 
 <style lang="">
-    
+
 </style>
