@@ -1,15 +1,11 @@
 <script setup lang="ts">
 const props = defineProps(['active_name', 'links'])
-// defineProps({
-//   title: String,
-//   likes: Number
-// })
+
 </script>
 <template>
     <div class="row">
         <div class="col-12">
             <h4 class="py-3 mb-1">
-
                 {{ props.active_name }}
             </h4>
             <nav aria-label="breadcrumb">

@@ -20,3 +20,5 @@ Route::get('/app', fn() => redirect('/app/dashboard'));
 
 Route::get('/{path?}',[FrontendController::class, 'index']);
 Route::get('/app/{module?}/{feature?}/{action?}', [BackendController::class, 'index'])->name('backend.dashboard')->middleware(['auth', 'verified']);
+
+

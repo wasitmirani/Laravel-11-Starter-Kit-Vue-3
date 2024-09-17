@@ -7,6 +7,4 @@ import MasterComponent from './Layouts/MasterComponent.vue';
     <div>
         <MasterComponent/>
     </div>
-
-
 </template>

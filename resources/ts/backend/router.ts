@@ -27,6 +27,9 @@ const routes = [
     setRoute('/unauthorized/user', '401', 'error/401', null),
     setRoute('/dashboard', 'dashboard', 'dashboard/Dashbord', null),
     setRoute('/settings/users', 'user', 'users/User', null),
+    setRoute('/settings/user-account', 'user-account', 'account/Account', null),
+   
+
     // {
     //     path: per_fix+'/dashboard',
     //     name: 'dashboard',
@@ -34,7 +37,7 @@ const routes = [
     //     meta: { permissions: '' ?? null },
 
     // }
-   
+
 
 
 ]

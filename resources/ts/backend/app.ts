@@ -6,8 +6,10 @@ import App from "./App.vue";
 
 
 
+let component_path: string ="./Components";
+import BreadcrumbComponent from '/Components/BreadcrumbComponent.vue';
 
-// import BreadcrumbComponent from  "./vue/backend/components/BreadcrumbComponent.vue";;
+// const BreadcrumbComponent = () => import(`${component_path}/BreadcrumbComponent.vue`);
 // import SearchInput from "./vue/backend/components/SearchInputComponent.vue";
 // import LoadingBox from "./vue/backend/components/LoadingBoxComponent.vue";
 // import Avatar from "./vue/backend/components/AvatarComponent.vue";
@@ -54,7 +56,7 @@ app.provide('useGlobal', useGlobal); // Provide the composable
 
 
 
-// app.component('BreadcrumbComponent',BreadcrumbComponent);
+app.component('BreadcrumbComponent',BreadcrumbComponent);
 // app.component('Uploader', Uploader);
 
 // app.component('SearchInput',SearchInput);
@@ -63,7 +65,7 @@ app.provide('useGlobal', useGlobal); // Provide the composable
 // app.component('generic-input',GenericInput);
 // app.component('VueMultiselect',VueMultiselect);
 // app.component('Avatar',Avatar);
-// 
+//
 
 // window.Swal =  app.config.globalProperties.$swal;
 
