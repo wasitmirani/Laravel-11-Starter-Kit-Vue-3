@@ -26,16 +26,7 @@ const tabs_list = Helpers.useDynamicRef([
                 <li class="nav-item mb-1 mb-sm-0" role="presentation" v-for="item in tabs_list" :key="item.id">
                     <TabButtonComponent :name="item.name" :customclass="item.class" :icon="item.icon" :label="item.label"/>
                 </li>
-                <!-- <li class="nav-item mb-1 mb-sm-0" role="presentation">
-                    <TabButtonComponent name="security" icon="ri-lock-line" label="Security"/>
-                </li>
-                <li class="nav-item mb-1 mb-sm-0" role="presentation">
-                    <TabButtonComponent name="billing" icon="ri-lock-line" label="Billing & Plans"/>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                  <button type="button" class="nav-link waves-effect waves-light" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-messages" aria-controls="navs-pills-justified-messages" aria-selected="false" tabindex="-1"><i class="tf-icons ri-message-2-line me-2"></i> Messages</button>
-                </li> -->
+           
               </ul>
               <div class="tab-content">
                 <div class="tab-pane fade active show" id="navs-pills-justified-home" role="tabpanel">
