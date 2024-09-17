@@ -6,8 +6,7 @@ import App from "./App.vue";
 
 
 
-let component_path: string ="./Components";
-import BreadcrumbComponent from '/Components/BreadcrumbComponent.vue';
+import BreadcrumbComponent from "./Components/BreadcrumbComponent.vue";
 
 // const BreadcrumbComponent = () => import(`${component_path}/BreadcrumbComponent.vue`);
 // import SearchInput from "./vue/backend/components/SearchInputComponent.vue";
