@@ -3,11 +3,11 @@
 
 // import { useNotification } from "@kyvg/vue3-notification";
 import { useRoute } from "vue-router";
-import { ref, onMounted,Ref,UnwrapRef,reactive, UnwrapNestedRefs  } from "vue";
+import { ref, onMounted,Ref,UnwrapRef,reactive, UnwrapNestedRefs,defineAsyncComponent  } from "vue";
 import router  from "../router"
 // import Swal from 'sweetalert2'
 // useNotification()
-const notification = ""; 
+const notification = "";
 
 
 
@@ -15,7 +15,7 @@ class Helper
 {
 
     public static base_url =window.location.origin;
-   
+
     useDynamicReactive<T extends object>(initialValue: T): UnwrapNestedRefs<T> {
         return reactive(initialValue);
     }
@@ -28,11 +28,24 @@ class Helper
           if (callback) {
             callback();
           }
-      
+
           // Return the onMounted function if needed
           return onMounted;
         });
     }
+     useDynamicDefineAsyncComponent<T>(loader: () => Promise<T>, callback?: () => void) {
+        return defineAsyncComponent(() => {
+          if (callback) {
+            onMounted(() => {
+              callback();
+            });
+          }
+
+          // Dynamically load the component
+          return loader();
+        });
+      }
+
     route = ()=>{
         return useRoute();
     };
@@ -46,7 +59,7 @@ class Helper
     NotifyAlert=(status:number, title:string, type:string, response:any)=>{
        notification.notify(this.alertNotify(status,title,type,response));
     }
-    
+
     alertNotify=(status:number, title:string, type:string, response:any) : any =>{
         switch (status) {
           case 200:
@@ -84,7 +97,7 @@ class Helper
            return "validate";
     }
 
-}   
+}
 
 
 export const Helpers = new Helper();
