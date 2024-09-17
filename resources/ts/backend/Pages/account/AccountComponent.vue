@@ -1,17 +1,18 @@
 
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
-
-// import TabButtonComponent from  '../../Components/TabButtonComponent.vue';
 const TabButtonComponent = Helpers.useDynamicDefineAsyncComponent(() => import('../../Components/TabButtonComponent.vue'));
 import { Helpers } from "../../Utils/helpers";
 
-const auth_user = window?.user;
+
+
+const auth_user = Helpers.auth();
 const tabs_list = Helpers.useDynamicRef([
     {name:'account',icon:'ri-user-settings-line',label:'Account',class:'active'},
     {name:'security',icon:'ri-lock-line',label:'Security',class:""},
     {name:'billing',icon:'ri-lock-line',label:'Billing & Plans',class:''},
 ]);
+
+
 </script>
 
 

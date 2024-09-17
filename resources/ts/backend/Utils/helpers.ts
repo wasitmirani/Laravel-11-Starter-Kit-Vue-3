@@ -97,6 +97,10 @@ class Helper
            return "validate";
     }
 
+    auth(){
+        return window.user;
+    }
+
 }
 
 
