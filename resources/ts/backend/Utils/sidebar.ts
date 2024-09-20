@@ -48,7 +48,7 @@ export default class Sidebar {
             this.setHeadingMenu('Tools & Sessions'),
             this.setMultiMenu('Settings', 'ri-settings-5-line', 'Settings',
                 [
-                    this.setSubMenu('Account ', '/settings/account', 'account-view'),
+                    this.setSubMenu('Account ', '/settings/user-account', 'account-view'),
                     this.setSubMenu('Users', '/settings/users', 'users-view'),
                     this.setSubMenu('Roles', '/settings/roles', 'roles-view'),
                 ]
