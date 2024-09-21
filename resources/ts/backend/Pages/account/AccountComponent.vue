@@ -10,8 +10,9 @@ const SecurityComponent = Helpers.useDynamicDefineAsyncComponent(()=>import('./p
 const auth_user = Helpers.auth();
 const tabs_list = Helpers.useDynamicRef([
     {name:'account',icon:'ri-user-settings-line',label:'Account',class:'active'},
-    {name:'security',icon:'ri-lock-line',label:'Security',class:""},
+    {name:'security',icon:'ri-lock-line',label:'Security',class:''},
     {name:'billing',icon:'ri-lock-line',label:'Billing & Plans',class:''},
+    {name:'Branding',icon:'ri-lock-line',label:'Custom Branding',class:''},
 ]);
 
 // Function to get the correct component based on the item name

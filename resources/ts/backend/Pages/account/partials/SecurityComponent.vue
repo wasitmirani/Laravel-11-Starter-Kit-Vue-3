@@ -65,6 +65,110 @@
             </div>
         </div>
         <!-- End change Password -->
+
+        <!-- Two-steps verification -->
+        <div class="card mb-6">
+      <div class="card-body">
+        <h5 class="mb-6">Two-steps verification</h5>
+        <p class="mb-4">Two factor authentication is not enabled yet.</p>
+        <p class="w-75">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.
+          <a href="javascript:void(0);">Learn more.</a>
+        </p>
+        <button class="btn btn-primary mt-2 waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#enableOTP">Enable Two-Factor Authentication</button>
+      </div>
+    </div>
+            <!--End Two-steps verification -->
+
+<!-- Create an API key -->
+<div class="card mb-6">
+      <h5 class="card-header mb-1">Create an API key</h5>
+      <div class="row row-gap-1">
+        <div class="col-xl-5 col-md-7">
+          <div class="card-body">
+            <form id="formAccountSettingsApiKey" method="GET" onsubmit="return false" class="fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+              <div class="row gy-5 fv-plugins-icon-container">
+                <div class="col-12">
+                  <div class="form-floating form-floating-outline form-floating-select2">
+                    <div class="position-relative"><select id="apiAccess" class="select2 form-select select2-hidden-accessible" data-select2-id="apiAccess" tabindex="-1" aria-hidden="true">
+                      <option value="" data-select2-id="2">Choose Key Type</option>
+                      <option value="full">Full Control</option>
+                      <option value="modify">Modify</option>
+                      <option value="read-execute">Read &amp; Execute</option>
+                      <option value="folders">List Folder Contents</option>
+                      <option value="read">Read Only</option>
+                      <option value="read-write">Read &amp; Write</option>
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="1" style="width: 475px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-apiAccess-container"><span class="select2-selection__rendered" id="select2-apiAccess-container" role="textbox" aria-readonly="true" title="Choose Key Type">Choose Key Type</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div>
+                    <label for="apiAccess">Choose the Api key type you want to create</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating form-floating-outline">
+                    <input type="text" class="form-control" id="apiKey" name="apiKey" placeholder="Server Key 1">
+                    <label for="apiKey">Name the API key</label>
+                  </div>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary me-2 w-100 waves-effect waves-light">Create Key</button>
+                </div>
+              </div>
+            <input type="hidden"></form>
+          </div>
+        </div>
+        <div class="col-xl-7 col-md-5">
+          <div class="text-center">
+            <img :src="`/backend/assets/img/illustrations/account-settings-security-illustration.png`" class="img-fluid" alt="Api Key Image" width="143">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--End Create an API key -->
+
+    <div class="card mb-6">
+      <div class="card-body">
+        <h5>API Key List &amp; Access</h5>
+        <p class="mb-6">An API key is a simple encrypted string that identifies an application without any principal. They are useful for accessing public data anonymously, and are used to associate API requests with your project for quota and billing.</p>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="bg-lighter rounded-3 p-4 mb-6">
+              <div class="d-flex align-items-center mb-2">
+                <h6 class="mb-0 me-3">Server Key 1</h6>
+                <span class="badge bg-label-primary rounded-pill">Full Access</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <span class="me-3 fw-medium">23eaf7f0-f4f7-495e-8b86-fad3261282ac</span>
+                <span class="cursor-pointer"><i class="ri-file-copy-line ri-20px"></i></span>
+              </div>
+              <span class="text-muted">Created on 28 Apr 2021, 18:20 GTM+4:10</span>
+            </div>
+            <div class="bg-lighter rounded-3 p-4 mb-6">
+              <div class="d-flex align-items-center mb-2">
+                <h6 class="mb-0 me-3">Server Key 2</h6>
+                <span class="badge bg-label-primary rounded-pill">Read Only</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <span class="me-3 fw-medium">bb98e571-a2e2-4de8-90a9-2e231b5e99</span>
+                <span class="cursor-pointer"><i class="ri-file-copy-line ri-20px"></i></span>
+              </div>
+              <span class="text-muted">Created on 12 Feb 2021, 10:30 GTM+2:30</span>
+            </div>
+            <div class="bg-lighter rounded-3 p-4">
+              <div class="d-flex align-items-center mb-2">
+                <h6 class="mb-0 me-3">Server Key 3</h6>
+                <span class="badge bg-label-primary rounded-pill">Full Access</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <span class="me-3 fw-medium">2e915e59-3105-47f2-8838-6e46bf83b711</span>
+                <span class="cursor-pointer"><i class="ri-file-copy-line ri-20px"></i></span>
+              </div>
+              <span class="text-muted">Created on 28 Dec 2020, 12:21 GTM+4:10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--End API Key List & Access -->
     </div>
 </template>
 
