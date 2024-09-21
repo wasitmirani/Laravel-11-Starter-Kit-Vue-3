@@ -31,7 +31,7 @@ const getComponent = (name:any) => {
 <template>
     <div>
         <!-- <BreadcrumbComponent :active_name="auth_user.name" /> -->
-        <div class="col-xl-6">
+        <div class="col-xl-12">
             <!-- <h6 class="text-muted">Filled Pills</h6> -->
             <div class="nav-align-top mb-6">
               <ul class="nav nav-pills mb-4 nav-fill" role="tablist">
@@ -54,13 +54,15 @@ const getComponent = (name:any) => {
 </template>
 
 <style>
-
+/* Override the styles affecting your component */
+.nav-align-top>.tab-content,
+.nav-align-right>.tab-content,
+.nav-align-bottom>.tab-content,
+.nav-align-left>.tab-content {
+    flex-shrink: initial; /* or any other value you prefer */
+    box-shadow: none;
+    background: none;
+}
 </style>
 
-function refactive(arg0: { name: string; icon: string; label: string; customclass: string; }[]) {
-  throw new Error("Function not implemented.");
-}
 
-function refactive(arg0: { name: string; icon: string; label: string; customclass: string; }[]) {
-  throw new Error("Function not implemented.");
-}
