@@ -7,33 +7,55 @@
         </div>
 
         <!-- Users List Table -->
-<div class="card">
-  <div class="card-header border-bottom">
-    <h5 class="card-title mb-0">Filters</h5>
-    <div class="d-flex justify-content-between align-items-center row gx-5 pt-4 gap-5 gap-md-0">
-      <div class="col-md-4 user_role"></div>
-      <div class="col-md-4 user_plan"></div>
-      <div class="col-md-4 user_status"></div>
-    </div>
-  </div>
-  <div class="card-datatable table-responsive">
-    <table class="datatables-users table">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th>User</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Plan</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  </div>
-    </div>
+        <div class="row mt-4">
+            <div class="card">
+                <div class="card-header border-bottom">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+
+                            <SearchInput label="Search Users" v-on:loading="loadingStart($event)"
+                                v-on:reload="getUsers()" v-on:filterData="filterData($event)" api_url="/category" />
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 ">
+                            <div style="float:right">
+                                <router-link :to="{ name: 'create-user' }"
+                                    class="btn btn-primary waves-effect waves-light">Add User</router-link>
+
+                                <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter"
+                                    style="margin-left: 5px;" class="btn btn-icon btn-label-primary waves-effect">
+                                    <span class="tf-icons mdi mdi-filter-menu-outline"></span>
+                                </button>
+                                <button @click="getUsers" type="button" style="margin-left: 5px;"
+                                    class="btn btn-icon btn-label-primary waves-effect">
+                                    <span class="tf-icons mdi mdi-reload"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Users Table -->
+                        <UsersTable :users="users" :isloading="isloading" v-on:user-deleted="getUsers" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Offcanvas to add new user -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasFilterLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Filters</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body mx-0 flex-grow-0 h-100">
+
+            </div>
+        </div>
 
 </template>
 
