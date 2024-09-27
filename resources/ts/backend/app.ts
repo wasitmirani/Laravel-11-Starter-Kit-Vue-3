@@ -9,7 +9,7 @@ import App from "./App.vue";
 import BreadcrumbComponent from "./Components/BreadcrumbComponent.vue";
 
 // const BreadcrumbComponent = () => import(`${component_path}/BreadcrumbComponent.vue`);
-// import SearchInput from "./vue/backend/components/SearchInputComponent.vue";
+import SearchInput from "./Components/SearchInputComponent.vue";
 // import LoadingBox from "./vue/backend/components/LoadingBoxComponent.vue";
 // import Avatar from "./vue/backend/components/AvatarComponent.vue";
 // import ValidateInput from "./vue/backend/components/ValidateInputComponent.vue";
@@ -58,7 +58,7 @@ app.provide('useGlobal', useGlobal); // Provide the composable
 app.component('BreadcrumbComponent',BreadcrumbComponent);
 // app.component('Uploader', Uploader);
 
-// app.component('SearchInput',SearchInput);
+app.component('SearchInput',SearchInput);
 // app.component('LoadingBox',LoadingBox);
 // app.component('validate-input',ValidateInput);
 // app.component('generic-input',GenericInput);
