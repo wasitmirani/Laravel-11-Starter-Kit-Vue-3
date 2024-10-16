@@ -5,7 +5,6 @@ defineProps<{
     profile?: boolean,
 }>()
 </script>
-
 <template>
     <div v-if="name" class="avatar me-2 -mb-2">
         <span class="avatar-initial rounded-circle bg-primary">{{ name?.slice(0, 2) }}</span>
