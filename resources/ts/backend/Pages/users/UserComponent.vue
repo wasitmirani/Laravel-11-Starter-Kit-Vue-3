@@ -1,5 +1,8 @@
 <script setup>
+import { Helpers } from '../../Utils/helpers';
+import UserTableComponent from './UserTableComponent.vue';
 
+const users = Helpers.useDynamicReactive({});
 </script>
 
 <template>
@@ -9,7 +12,6 @@
             <p class="mb-6">A role provided access to predefined menus and features so that depending on assigned role
                 an administrator can have access to what user needs.</p>
         </div>
-
         <!-- Users List Table -->
         <div class="row mt-4">
             <div class="card">
@@ -23,13 +25,13 @@
                                 v-on:reload="getUsers()" v-on:filterData="filterData($event)" api_url="/category" /> -->
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-6 ">
-                            <div  style="float:right">
+                            <div class="btn-fr ">
                                 <!-- <router-link :to="{ name: 'create-user' }"
                                     class="btn btn-primary waves-effect waves-light">Add User</router-link> -->
 
                                 <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter"
-                                    class="btn ml-2 mr-2 btn-icon btn-label-primary waves-effect">
-                                    <span class="tf-icons ri-filter-2-line"></span>
+                                    class="btn  btn-icon btn-label-primary btn-ml-5 waves-effect">
+                                    <span class="tf-icons ri-filter-2-line "></span>
 
                                 </button>
                                 <button type="button"
@@ -39,14 +41,9 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="card-body">
-                    <div class="row">
                         <!-- Users Table -->
-                            
-                    </div>
-                </div>
+                  <UserTableComponent/>
             </div>
         </div>
 
