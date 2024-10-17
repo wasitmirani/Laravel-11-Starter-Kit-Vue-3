@@ -76,17 +76,17 @@ const table_headers = [
                         <td><span class="badge rounded-pill bg-label-warning">Pending</span></td>
                         <td><span class="text-heading">Enterprise</span></td>
                         <td><span class="text-heading">10, July 2021 20:07
-                        </span></td>
+                            </span></td>
                         <td>
-                            <a  role="button">
+                            <a role="button">
                                 <i class="ri-eye-line text-primary"></i>
                             </a>
                             |
-                            <a  role="button">
+                            <a role="button">
                                 <i class="ri-pencil-fill text-primary"></i>
                             </a>
 
-                                | <a  role="button">
+                            | <a role="button">
                                 <i class="ri-delete-bin-fill text-danger"></i>
                             </a>
                         </td>
