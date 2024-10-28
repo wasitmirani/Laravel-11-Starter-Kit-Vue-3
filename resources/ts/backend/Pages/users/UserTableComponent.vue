@@ -50,15 +50,14 @@ const table_headers = [
                             <input type="checkbox" class="form-check-input">
                         </th>
                         <th v-for="header in table_headers" :key="header.key"> {{ header.label }}</th>
-
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
 
                     <tr>
-                        <td>
+                        <th>
                             <input type="checkbox" class="form-check-input">
-                        </td>
+                        </th>
                         <td>
                             <div class="d-flex justify-content-start align-items-center user-name">
                                 <div class="avatar-wrapper">
