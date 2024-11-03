@@ -446,6 +446,11 @@
   "resolved" "https://registry.npmjs.org/computeds/-/computeds-0.0.1.tgz"
   "version" "0.0.1"
 
+"core-js@^3.6.5":
+  "integrity" "sha512-raM0ew0/jJUqkJ0E6e8UDtl+y/7ktFivgWvqw8dNSQeNWoSDLvQ1H/RN3aPXB9tBd4/FhyR4RDPGhsNIMsAn7g=="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.39.0.tgz"
+  "version" "3.39.0"
+
 "cross-spawn@^7.0.0":
   "integrity" "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w=="
   "resolved" "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
@@ -728,6 +733,11 @@
   dependencies:
     "picocolors" "^1.0.0"
     "vite-plugin-full-reload" "^1.1.0"
+
+"libphonenumber-js@^1.9.6":
+  "integrity" "sha512-QkJn9/D7zZ1ucvT++TQSvZuSA2xAWeUytU+DiEQwbPKLyrDpvbul2AFs1CGbRAPpSCCk47aRAb5DX5mmcayp4g=="
+  "resolved" "https://registry.npmjs.org/libphonenumber-js/-/libphonenumber-js-1.11.12.tgz"
+  "version" "1.11.12"
 
 "lilconfig@^2.1.0":
   "integrity" "sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ=="
@@ -1216,6 +1226,11 @@
     "escalade" "^3.1.2"
     "picocolors" "^1.0.1"
 
+"user@^0.0.0":
+  "integrity" "sha512-eRNM5isOvr6aEFAGi1CqAkmLkYxW2NJ5ThhbD+6IJXYKM1mo7Gtxx4mQIveHz/5K3p/SVnlW9k17ETn+QAu8IQ=="
+  "resolved" "https://registry.npmjs.org/user/-/user-0.0.0.tgz"
+  "version" "0.0.0"
+
 "util-deprecate@^1.0.2":
   "integrity" "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
   "resolved" "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
@@ -1267,6 +1282,16 @@
   "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.10.tgz"
   "version" "0.14.10"
 
+"vue-media-upload@^2.2.4":
+  "integrity" "sha512-UkVCvsrMC/ByNMuTl0CwhTCAeUskaqIK9awM6zAuvYRbmxvdus7aw3+mfVw0HGaV945ERw9hxe2++K4CRk8fcQ=="
+  "resolved" "https://registry.npmjs.org/vue-media-upload/-/vue-media-upload-2.2.4.tgz"
+  "version" "2.2.4"
+
+"vue-multiselect@^3.1.0":
+  "integrity" "sha512-+i/fjTqFBpaay9NP+lU7obBeNaw2DdFDFs4mqhsM0aEtKRdvIf7CfREAx2o2B4XDmPrBt1r7x1YCM3BOMLaUgQ=="
+  "resolved" "https://registry.npmjs.org/vue-multiselect/-/vue-multiselect-3.1.0.tgz"
+  "version" "3.1.0"
+
 "vue-router@^4.4.3":
   "integrity" "sha512-sv6wmNKx2j3aqJQDMxLFzs/u/mjA9Z5LCgy6BE0f7yFWMjrPLnS/sPNn8ARY/FXw6byV18EFutn5lTO6+UsV5A=="
   "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-4.4.3.tgz"
@@ -1283,7 +1308,7 @@
     "@vue/language-core" "2.0.29"
     "semver" "^7.5.4"
 
-"vue@^2.6.14 || ^3.3.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.4.38", "vue@3.4.38":
+"vue@^2.6.14 || ^3.3.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.0-beta.1", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.4.38", "vue@3.4.38":
   "integrity" "sha512-f0ZgN+mZ5KFgVv9wz0f4OgVKukoXtS3nwET4c2vLBGQR50aI8G0cqbFtLlX9Yiyg3LFGBitruPHt2PxwTduJEw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.4.38.tgz"
   "version" "3.4.38"
@@ -1293,6 +1318,16 @@
     "@vue/runtime-dom" "3.4.38"
     "@vue/server-renderer" "3.4.38"
     "@vue/shared" "3.4.38"
+
+"vue3-tel-input@^1.0.4":
+  "integrity" "sha512-C60OyAq5ORDErSJ4x7UmJJbF95CDncMswnySmAUtbuBP0pcVcJBu6DOTxKquykvTbJEh9I73DXyqMtDxtLrwJg=="
+  "resolved" "https://registry.npmjs.org/vue3-tel-input/-/vue3-tel-input-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "core-js" "^3.6.5"
+    "libphonenumber-js" "^1.9.6"
+    "user" "^0.0.0"
+    "vue" "^3.0.0-beta.1"
 
 "which@^2.0.1":
   "integrity" "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA=="

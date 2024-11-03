@@ -26,7 +26,7 @@ const routes = [
     setRoute('/:catchAll(.*)', '404', 'errors/404', null),
     setRoute('/unauthorized/user', '401', 'error/401', null),
     setRoute('/dashboard', 'dashboard', 'dashboard/Dashbord', null),
-    setRoute('/settings/users', 'user', 'users/Users', null),
+    setRoute('/settings/users', 'users', 'users/Users', null),
     setRoute('/settings/create-user', 'create-user', 'users/CreateUser', null),
     setRoute('/settings/user-account', 'user-account', 'account/Account', null),
 

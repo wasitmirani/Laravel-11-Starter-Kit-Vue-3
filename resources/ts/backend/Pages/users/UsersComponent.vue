@@ -23,7 +23,7 @@ const users = Helpers.useDynamicReactive({});
                             <!--
                             <SearchInput label="Search Users" v-on:loading="loadingStart($event)"
                                 v-on:reload="getUsers()" v-on:filterData="filterData($event)" api_url="/category" /> -->
-                                <button class="btn btn-primary waves-effect waves-light" >
+                                <button class="btn btn-primary waves-effect waves-light" @click="Helpers.navigateTo('create-user')">
                                     <i class="ri-user-add-fill me-0 me-sm-1 d-inline-block d-sm-none"></i>
 
                                 <span class="d-none d-sm-inline-block"> Add New User </span></button>

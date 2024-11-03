@@ -4,6 +4,10 @@ import { createApp } from "vue";
 import { createPinia } from 'pinia'
 import App from "./App.vue";
 
+import VueTelInput from 'vue3-tel-input'
+import 'vue3-tel-input/dist/vue3-tel-input.css';
+
+
 
 
 import BreadcrumbComponent from "./Components/BreadcrumbComponent.vue";
@@ -18,12 +22,10 @@ import SearchInput from "./Components/SearchInputComponent.vue";
 // import PrimeVue from 'primevue/config';
 // import Aura from '@primevue/themes/aura';
 // import ToastService from 'primevue/toastservice';
-// import Uploader from 'vue-media-upload';
-// import VueTelInput from 'vue3-tel-input'
-// import 'vue3-tel-input/dist/vue3-tel-input.css'
+import Uploader from 'vue-media-upload';
 import { useGlobal } from './global-composables'; // Import the composable
-// import VueMultiselect from 'vue-multiselect'
-// import "vue-multiselect/dist/vue-multiselect.css"
+import VueMultiselect from 'vue-multiselect'
+import "vue-multiselect/dist/vue-multiselect.css"
 
 
 
@@ -62,13 +64,14 @@ app.component('SearchInput',SearchInput);
 // app.component('LoadingBox',LoadingBox);
 // app.component('validate-input',ValidateInput);
 // app.component('generic-input',GenericInput);
-// app.component('VueMultiselect',VueMultiselect);
+app.component('VueMultiselect',VueMultiselect);
 // app.component('Avatar',Avatar);
 //
 
-// window.Swal =  app.config.globalProperties.$swal;
 
 app.config.globalProperties.$router = router;
+app.use(VueTelInput); // Define default global options here (optional)
+
 app.mount('#app');
 
 
