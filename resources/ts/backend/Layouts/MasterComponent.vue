@@ -45,11 +45,11 @@ import SideBarMenuComponent from "./partials/SideBarMenuComponent.vue";
 
 <style>
 .slide-fade-enter-active {
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .slide-fade-leave-active {
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .slide-fade-enter-from,
