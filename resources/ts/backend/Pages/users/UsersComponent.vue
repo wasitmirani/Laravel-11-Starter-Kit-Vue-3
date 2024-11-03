@@ -1,5 +1,5 @@
 <script setup>
-import { Helpers } from '../../Utils/helpers';
+import { Helpers } from '../../Utils/Helper';
 import UserTableComponent from './UserTableComponent.vue';
 
 const users = Helpers.useDynamicReactive({});

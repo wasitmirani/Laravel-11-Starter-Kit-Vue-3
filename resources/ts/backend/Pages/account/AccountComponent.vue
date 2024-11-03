@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
 const TabButtonComponent = Helpers.useDynamicDefineAsyncComponent(() => import('../../Components/TabButtonComponent.vue'));
-import { Helpers } from "../../Utils/helpers";
+import { Helpers } from "../../Utils/Helper";
 const UserProfile = Helpers.useDynamicDefineAsyncComponent(()=>import('./partials/UserProfileComponent.vue'));
 const SecurityComponent = Helpers.useDynamicDefineAsyncComponent(()=>import('./partials/SecurityComponent.vue'));
 

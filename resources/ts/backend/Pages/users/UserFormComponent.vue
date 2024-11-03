@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Helpers } from '../../Utils/helpers';
+import { Helpers } from '../../Utils/Helper';
 import { reactive, computed } from 'vue';
 
 

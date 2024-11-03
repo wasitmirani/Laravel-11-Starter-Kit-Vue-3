@@ -1,6 +1,6 @@
 
 
-export default class Sidebar {
+export default class SidebarMenu {
 
     private per_fix = "/app";
 

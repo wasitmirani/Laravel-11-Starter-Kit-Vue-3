@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { Helpers } from "../../Utils/helpers";
-import Sidebar from "../../Utils/sidebar";
+import { Helpers } from "../../Utils/Helper";
+import SidebarMenu from "../../Utils/Sidebar";
 
 const menuList: any = Helpers.useDynamicRef([]);
 
 Helpers.useDynamicOnMounted(() => {
-  let sidebar = new Sidebar();
+  let sidebar = new SidebarMenu();
   const fetchedMenuList = sidebar.getMenuList();
   menuList.value = fetchedMenuList;
   console.log("menuList", menuList.value);
