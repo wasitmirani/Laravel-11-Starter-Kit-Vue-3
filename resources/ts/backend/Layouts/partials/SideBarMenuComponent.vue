@@ -8,16 +8,13 @@ Helpers.useDynamicOnMounted(() => {
   let sidebar = new SidebarMenu();
   const fetchedMenuList = sidebar.getMenuList();
   menuList.value = fetchedMenuList;
-  console.log("menuList", menuList.value);
 });
 function isActive(link: string) {
-  console.log("isActive", Helpers.route().path == link);
-  console.log("link", link);
   return Helpers.route().path === link ? 'active' : '';
 
 }
 function isAllowed(value: string): boolean {
-  console.log("isAllowed", value);
+//   console.log("isAllowed", value);
   return true;
   // if (permissions.includes(value)) {
   //     return true;

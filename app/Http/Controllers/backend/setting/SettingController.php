@@ -9,13 +9,16 @@ class SettingController extends Controller
 {
     public function getCountires(){
 
+        return response()->json(['id'=>1,'name'=>'PK']);
     }
 
     public function getLanguages(){
+        return response()->json(['id'=>1,'name'=>'EN']);
 
     }
 
     public function getTimezones(){
+        return response()->json(['id'=>1,'name'=>'UTC']);
 
     }
 }

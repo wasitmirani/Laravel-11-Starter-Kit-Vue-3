@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import { Helpers } from '../../Utils/Helper';
-import { reactive, computed } from 'vue';
+import { useSettingsStore } from '../../Stores/settingsStore';
 
 
 
+const settingsStore = useSettingsStore();
+
+Helpers.useDynamicOnMounted(async () => {
+    await settingsStore.fetchCountries();
+    await settingsStore.fetchTimezones();
+    await settingsStore.fetchLanguages();
+  console.log("countries",settingsStore.countries);
+  console.log("languages",settingsStore.languages);
+  console.log("timezones",settingsStore.timezones);
+});
 let userData = Helpers.useDynamicReactive({
     country: {},
 });
