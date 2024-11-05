@@ -21,4 +21,7 @@ Route::prefix('/app')->group(function () {
         Route::post('/{type}/image',[UploadController::class,'uploadSingleImage']);
     });
 
+    Route::prefix('/list')->group( function(){
+        
+    });
 });

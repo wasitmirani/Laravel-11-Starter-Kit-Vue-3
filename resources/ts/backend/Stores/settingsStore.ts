@@ -31,6 +31,5 @@ export const useSettingsStore = defineStore('settings', () => {
       console.error('Error fetching languages:', error);
     }
   }
-
   return { countries, timezones, languages, fetchCountries, fetchTimezones, fetchLanguages };
 });
