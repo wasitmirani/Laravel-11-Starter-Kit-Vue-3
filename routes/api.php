@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\role\RoleController;
 use App\Http\Controllers\backend\user\UserController;
 use App\Http\Controllers\backend\media\UploadController;
+use App\Http\Controllers\backend\setting\SettingController;
 
 Route::get('/me', function (Request $request) {
     return $request->user();
@@ -22,6 +23,8 @@ Route::prefix('/app')->group(function () {
     });
 
     Route::prefix('/list')->group( function(){
-        
+        Route::get('/countries',[SettingController::class,'getCountires']);
+        Route::get('/languages',[SettingController::class,'getLanguages']);
+        Route::get('/timezones',[SettingController::class,'getTimezones']);
     });
 });
