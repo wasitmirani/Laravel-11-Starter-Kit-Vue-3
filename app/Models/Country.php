@@ -11,6 +11,6 @@ class Country extends Model
 
     public function getAllCategories()
     {
-        return self::orderBy('name')->get();
+        return self::orderBy('countryName')->get();
     }
 }
