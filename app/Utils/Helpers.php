@@ -37,10 +37,10 @@ function genUUID()
     return (string) Str::uuid();
 }
 
-function mapFirstNameLastSlug($val,$val2=null)
+function mapFirstNameLastSlug($val, $val2 = null)
 {
 
-return Str::slug($val.'-'.$val2, '-');
+    return Str::slug($val . '-' . $val2, '-');
 }
 function setSlug($val)
 {
@@ -61,7 +61,6 @@ function setDateTimeFormat($date)
         $carbonDate = new Carbon($date->format('d-m-Y h:i:s a'));
         $carbonDate->timezone = 'Asia/Karachi';
         return $carbonDate->format('d-m-Y h:i:s a');
-
     }
 }
 
@@ -142,40 +141,52 @@ function removeUrlFromThumbnail(string $type, string $value): string
     return str_replace($pattern, '', $value);
 }
 
-function fetchGeoLocation(){
+function fetchGeoLocation()
+{
     $ip = request()->ip();
     if ($ip == "127.0.0.1")
         $ip = "103.244.176.117";
     $geo = unserialize(file_get_contents("http://ip-api.com/php/" . $ip));
     return $geo ?? null;
 }
-function logDeviceHistory(){
+function logDeviceHistory()
+{
     try {
-    $agent = new Agent();
-    $agent->setUserAgent(request()->header('User-Agent'));
-    // Determine the device type
-    if ($agent->isPhone()) {
-        $deviceType = 'mobile';
-    } elseif ($agent->isTablet()) {
-        $deviceType = 'tablet';
-    } else {
-        $deviceType = 'desktop';
+        $agent = new Agent();
+        $agent->setUserAgent(request()->header('User-Agent'));
+        // Determine the device type
+        if ($agent->isPhone()) {
+            $deviceType = 'mobile';
+        } elseif ($agent->isTablet()) {
+            $deviceType = 'tablet';
+        } else {
+            $deviceType = 'desktop';
+        }
+        DeviceHistory::create([
+            'user_id' => auth()->user()->id,
+            'device_name' => $agent->device(), // Device name (e.g., iPhone)
+            'browser' => $agent->browser(), // Browser name (e.g., Chrome)
+            'platform' => $agent->platform(), // OS name (e.g., iOS)
+            'device_id' => request()->header('X-Device-ID'),
+            'device_type' => $deviceType,
+            'os_version' => $agent->version($agent->platform()),
+            'app_version' => request()->header('X-App-Version'),
+            'ip_address' => request()->ip(),
+            'device_information' => fetchGeoLocation(),
+            'last_login_at' => now(),
+        ]);
+    } catch (\Throwable $th) {
+        Log::error("logDeviceHistory: has failed to log device history for {$th->getMessage()} | {$th->getTraceAsString()} | Time:" . now());
+        throw $th;
     }
-    DeviceHistory::create([
-        'user_id' => auth()->user()->id,
-        'device_name' => $agent->device(), // Device name (e.g., iPhone)
-        'browser' => $agent->browser(), // Browser name (e.g., Chrome)
-        'platform' => $agent->platform(), // OS name (e.g., iOS)
-        'device_id' => request()->header('X-Device-ID'),
-        'device_type'=> $deviceType,
-        'os_version' => $agent->version($agent->platform()),
-        'app_version' => request()->header('X-App-Version'),
-        'ip_address' => request()->ip(),
-        'device_information' =>fetchGeoLocation(),
-        'last_login_at' => now(),
-    ]);
-} catch (\Throwable $th) {
-    Log::error("logDeviceHistory: has failed to log device history for {$th->getMessage()} | {$th->getTraceAsString()} | Time:".now() );
-    throw $th;
-}
+
+    function shortTimer()
+    {
+        return  now()->addSeconds(60);
+    }
+    function sessionTimer()
+    {
+
+        return  now()->addMinutes(30);
+    }
 }

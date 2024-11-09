@@ -23,7 +23,7 @@ Route::prefix('/app')->group(function () {
     });
 
     Route::prefix('/list')->group( function(){
-        Route::get('/countries',[SettingController::class,'getCountires']);
+        Route::get('/options',[SettingController::class,'getListOptions']);
         Route::get('/languages',[SettingController::class,'getLanguages']);
         Route::get('/timezones',[SettingController::class,'getTimezones']);
     });

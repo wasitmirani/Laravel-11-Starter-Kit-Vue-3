@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+
+    public function getListOptions(){
+        
+    }
     public function getCountires(){
 
         return response()->json(['id'=>1,'name'=>'PK']);
