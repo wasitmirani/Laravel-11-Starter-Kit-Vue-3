@@ -1,4 +1,10 @@
-<script setup>
+<script setup lang="ts">
+import { UserService } from '../../Services/user/UserService';
+import { Helpers } from '../../Utils/Helper';
+
+const props = defineProps(['users','isloading','getUsers'])
+const emit = defineEmits(['user-deleted'])
+
 const table_headers = [
     {
         key: 'user',
@@ -36,6 +42,42 @@ const table_headers = [
         sortable: false,
     },
 ];
+function getUserRole(user:any) {
+    if(user.roles.length > 0){
+        return user.roles[0].name;
+    }
+    return "No Role";
+}
+const deleteUser = (item:any)=>{
+    Helpers.Swal().fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+    }).then((result:any) => {
+    if (result.isConfirmed) {
+        UserService.delete(item.id).then((res:any)=>{
+            emit('user-deleted',true); // Emitting the event
+            Helpers.Swal().fire({
+            title: "Deleted!",
+            text: "User has been deleted.",
+            icon: "success"
+            });
+        }).catch((err)=>{
+
+            Helpers.NotifyAlert(err.response.status, "", "error", err.response.data);
+        })
+       
+    }
+    });
+}
+
+const editUser = (item:any) =>{
+    Helpers.router().push({ name: "update-user",params: { uuid: item.uuid }}); 
+}
 
 </script>
 <template>

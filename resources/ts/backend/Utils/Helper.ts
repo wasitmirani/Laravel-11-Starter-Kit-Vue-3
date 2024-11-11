@@ -5,7 +5,7 @@
 import { useRoute } from "vue-router";
 import { ref, onMounted, Ref, UnwrapRef, reactive, UnwrapNestedRefs, defineAsyncComponent } from "vue";
 import router from "../router"
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 // useNotification()
 const notification = "";
 
@@ -49,9 +49,9 @@ class Helper {
         return useRoute();
     };
 
-    // Swal = ()=>{
-    //   return Swal;
-    // }
+    Swal = ()=>{
+      return Swal;
+    }
     router = () => {
         return router;
     }

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Country;
 use App\Traits\LogsActivity;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -49,7 +50,10 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
     // Your service's properties and methods
 
     // public function createUser(array $data)

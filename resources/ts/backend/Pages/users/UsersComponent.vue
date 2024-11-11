@@ -1,8 +1,40 @@
-<script setup>
+<script setup lang="ts">
+import { UserService } from '../../Services/user/UserService';
 import { Helpers } from '../../Utils/Helper';
 import UserTableComponent from './UserTableComponent.vue';
 
-const users = Helpers.useDynamicReactive({});
+
+let users = Helpers.useDynamicReactive([]);
+
+const isloading = Helpers.useDynamicRef(false);
+
+const getUsers = () => {
+    isloading.value = true;
+    UserService.users().then((res) => {
+        // Helpers.NotifyAlert(200,'User Data','success',res.data.message);
+    
+        console.log("res:", users);
+        users = res.data.result.users;
+        console.log("users:", users);
+    }).catch((err) => {
+        Helpers.NotifyAlert(400,'User Data','error',err.response.data.message);
+    })
+    setTimeout(() => {
+        isloading.value  = false;
+    }, 1000);
+}
+
+function loadingStart(value:any) {
+  isloading.value = value;
+}
+function filterData(data:any) {
+    users = data.users;
+}
+Helpers.useDynamicOnMounted(() => {
+    getUsers();
+    
+});
+
 </script>
 
 <template>
@@ -19,12 +51,12 @@ const users = Helpers.useDynamicReactive({});
                     <div class="row">
 
                         <div class="col-lg-4 col-md-4 col-sm-6">
-                            <SearchInput label="Search Users" api_url="/user" />
-                            <!--
+                               
                             <SearchInput label="Search Users" v-on:loading="loadingStart($event)"
-                                v-on:reload="getUsers()" v-on:filterData="filterData($event)" api_url="/category" /> -->
-                                <button class="btn btn-primary waves-effect waves-light" @click="Helpers.navigateTo('create-user')">
-                                    <i class="ri-user-add-fill me-0 me-sm-1 d-inline-block d-sm-none"></i>
+                                v-on:reload="getUsers()" v-on:filterData="filterData($event)" api_url="/category" />
+                            <button class="btn btn-primary waves-effect waves-light"
+                                @click="Helpers.navigateTo('create-user')">
+                                <i class="ri-user-add-fill me-0 me-sm-1 d-inline-block d-sm-none"></i>
 
                                 <span class="d-none d-sm-inline-block"> Add New User </span></button>
                         </div>
@@ -38,16 +70,15 @@ const users = Helpers.useDynamicReactive({});
                                     <span class="tf-icons ri-filter-2-line "></span>
 
                                 </button>
-                                <button type="button"
-                                    class="btn btn-icon btn-label-primary waves-effect">
+                                <button  @click="getUsers"  type="button" class="btn btn-icon btn-label-primary waves-effect">
                                     <span class="tf-icons ri-refresh-line"></span>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                        <!-- Users Table -->
-                  <UserTableComponent/>
+                <!-- Users Table -->
+                <UserTableComponent :users="users" :isloading="isloading" v-on:user-deleted="getUsers"/>
             </div>
         </div>
 
@@ -63,6 +94,6 @@ const users = Helpers.useDynamicReactive({});
 
             </div>
         </div>
-</div>
+    </div>
 
 </template>
