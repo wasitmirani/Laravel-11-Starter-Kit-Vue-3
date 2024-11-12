@@ -20,7 +20,7 @@ const handleSubmitForm = (formData: any) => {
 <template>
    
     <div class="row">
-        <UserForm :saveDraftHandler="saveDraftHandler" />
+        <UserForm />
 
     </div>
 </template>
