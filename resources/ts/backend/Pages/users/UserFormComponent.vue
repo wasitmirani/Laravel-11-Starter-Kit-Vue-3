@@ -1,10 +1,62 @@
 <script setup lang="ts">
 import { Helpers } from '../../Utils/Helper';
 import { useSettingsStore } from '../../Stores/settingsStore';
+import { UserService } from '../../Services/user/UserService';
 
 
 
 const settingsStore = useSettingsStore();
+let userData = Helpers.useDynamicReactive({});
+let errors = Helpers.useDynamicRef([]);
+let countries = Helpers.useDynamicReactive([]);
+const editmode = Helpers.useDynamicRef(false);
+const isloading = Helpers.useDynamicRef(false);
+
+
+
+
+const onInput = (phone:any, phoneObject:any, input:any)=> {
+    if (phoneObject?.formatted) {
+        userData.phone = phoneObject.formatted;
+    }
+}
+
+const  addThumbnail = (media: any)=>{
+  if (media) {
+    userData.thumbnail = media.name;
+  }
+
+}
+
+const userStore = (data: any) => {
+  isloading.value = true;
+
+  UserService.store(data)
+    .then((res: any) => {
+
+      Helpers.NotifyAlert(200, "User Store", "success", res.data.message);
+      Helpers.router().push({ name: "users" });
+    }).catch((err: any) => {
+      if(err.response.data){
+        errors.value = err.response.data;
+        console.log(errors.value);
+        Helpers.NotifyAlert(err.response.status, "", "error", err.response.data);
+      }
+    });
+  setTimeout(() => {
+    isloading.value = false;
+  }, 1000);
+};
+const onSubmit = () => {
+
+  if(!editmode.value){
+    userStore(userData);
+  }
+  else {
+    // userUpdate(user);
+  }
+
+};
 
 Helpers.useDynamicOnMounted(async () => {
     await settingsStore.fetchCountries();
@@ -14,26 +66,6 @@ Helpers.useDynamicOnMounted(async () => {
   console.log("languages",settingsStore.languages);
   console.log("timezones",settingsStore.timezones);
 });
-let userData = Helpers.useDynamicReactive({
-    country: {},
-});
-let countries = Helpers.useDynamicReactive([]);
-const onSumbit = () => {
-    console.log("userData", userData);
-}
-const onInput = (phone:any, phoneObject:any, input:any)=> {
-    if (phoneObject?.formatted) {
-        userData.phone = phoneObject.formatted;
-    }
-}
-
-const  addThumbnail = (media: any)=>{
-  if (media) {
-    user.thumbnail = media.name;
-  }
-
-
-}
 
 </script>
 
@@ -56,60 +88,81 @@ const  addThumbnail = (media: any)=>{
                 </div>
             </div>
             <div class="card-body pt-0">
-                <form method="POST" onsubmit="return false" class="fv-plugins-bootstrap5 fv-plugins-framework">
+                <form method="POST" @submit.prevent="onSubmit"  class="fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="row mt-1 g-5">
                         <div class="col-md-6 fv-plugins-icon-container">
-                            <div class="form-floating form-floating-outline">
-                                <input class="form-control" v-model="userData.first_name" type="text" id="firstName"
-                                    name="firstName" placeholder="John" autofocus="">
-                                <label for="firstName">First Name</label>
-                            </div>
-                            <div
-                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                            </div>
+                            <DynamicInput
+                            v-model="userData.first_name"
+                            label="First Name"
+                            name="first_name"
+                            placeholder="John"
+                            type="text"         
+                            :errors="errors"
+                            autofocus
+                            />
                         </div>
                         <div class="col-md-6 fv-plugins-icon-container">
-                            <div class="form-floating form-floating-outline">
-                                <input class="form-control" type="text" v-model="userData.last_name" name="lastName"
-                                    placeholder="Doe" id="lastName">
-                                <label for="lastName">Last Name</label>
-                            </div>
-                            <div
-                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                            </div>
+                           
+                            <DynamicInput
+                            v-model="userData.last_name"
+                            label="Last Name"
+                            name="last_name"
+                            placeholder="Doe"  
+                            type="text"         
+                            :errors="errors"
+                            autofocus
+                            />
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating form-floating-outline">
-                                <input class="form-control" type="text" id="email" v-model="userData.email" name="email"
-                                    placeholder="john.doe@example.com">
-                                <label for="email">E-mail</label>
-                            </div>
+                            <DynamicInput
+                            v-model="userData.email"
+                            label="Email"
+                            name="email"
+                            placeholder="Doe"  
+                            type="text"         
+                            :errors="errors"
+                            autofocus
+                            />
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating form-floating-outline">
-                                <input type="text" class="form-control" id="organization" name="organization"
-                                    placeholder="organization">
-                                <label for="organization">Organization</label>
-                            </div>
+                            <DynamicInput 
+                            v-model="userData.organization"
+                            label="Organization"
+                            name="organization"
+                            placeholder="Organization"  
+                            type="text"         
+                            :errors="errors"
+                            autofocus
+                            />
                         </div>
                         <div class="col-md-6">
                             <vue-tel-input :value="userData.phone" @input="onInput"></vue-tel-input>
 
-
+                            <validate-input :errors="errors?.errors" :value="phone" />
 
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating form-floating-outline">
-                                <input type="text" class="form-control" id="address" name="address"
-                                    placeholder="123 Main St, New York, NY 10001">
-                                <label for="address">Address</label>
-                            </div>
+                           
+                            <DynamicInput 
+                            v-model="userData.address"
+                            label="Address"
+                            name="address"
+                            placeholder="Address"  
+                            type="text"         
+                            :errors="errors"
+                            autofocus
+                            />
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating form-floating-outline">
-                                <input class="form-control" type="text" id="state" name="state" placeholder="New York">
-                                <label for="state">State</label>
-                            </div>
+                            <DynamicInput 
+                            v-model="userData.state"
+                            label="State"
+                            name="state"
+                            placeholder="State"  
+                            type="text"         
+                            :errors="errors"
+                            autofocus
+                            />
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
@@ -121,7 +174,7 @@ const  addThumbnail = (media: any)=>{
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline form-floating-select2">
                                 <!-- @select="getCategory(car.brand)" -->
-                                <VueMultiselect v-model="userData.country" required placeholder="Select Country"
+                                <VueMultiselect v-model="userData.country"  placeholder="Select Country"
                                     trackBy="id" label="name" :options="countries">
                                 </VueMultiselect>
                                 <label for="country">Country</label>
@@ -129,7 +182,7 @@ const  addThumbnail = (media: any)=>{
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
-                                <VueMultiselect v-model="userData.country" required placeholder="Select Country"
+                                <VueMultiselect v-model="userData.country"  placeholder="Select Country"
                                     trackBy="id" label="name" :options="countries">
                                 </VueMultiselect>
                                 <label for="TagifyLanguageSuggestion">Language</label>
@@ -137,7 +190,7 @@ const  addThumbnail = (media: any)=>{
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline form-floating-select2">
-                                <VueMultiselect v-model="userData.country" required placeholder="Select Country"
+                                <VueMultiselect v-model="userData.country"  placeholder="Select Country"
                                     trackBy="id" label="name" :options="countries">
                                 </VueMultiselect>
                                 <label for="timeZones">Timezone</label>
@@ -145,7 +198,7 @@ const  addThumbnail = (media: any)=>{
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline form-floating-select2">
-                                <VueMultiselect v-model="userData.country" required placeholder="Select Country"
+                                <VueMultiselect v-model="userData.country"  placeholder="Select Country"
                                     trackBy="id" label="name" :options="countries">
                                 </VueMultiselect>
                                 <label for="currency">Currency</label>

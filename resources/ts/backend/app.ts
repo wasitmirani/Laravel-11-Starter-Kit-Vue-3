@@ -14,6 +14,7 @@ import BreadcrumbComponent from "./Components/BreadcrumbComponent.vue";
 
 // const BreadcrumbComponent = () => import(`${component_path}/BreadcrumbComponent.vue`);
 import SearchInput from "./Components/SearchInputComponent.vue";
+import DynamicInput from "./Components/DynamicInputComponent.vue";
 import LoadingBox from "./Components/LoadingBoxComponent.vue";
 import Avatar from "./Components/AvatarComponent.vue";
 import ValidateInput from "./Components/ValidateInputComponent.vue";
@@ -43,6 +44,7 @@ app.use(router);
 app.component('BreadcrumbComponent',BreadcrumbComponent);
 app.component('Uploader', Uploader);
 app.component('SearchInput',SearchInput);
+app.component('DynamicInput', DynamicInput);
 app.component('LoadingBox',LoadingBox);
 app.component('validate-input',ValidateInput);
 // app.component('generic-input',GenericInput);
