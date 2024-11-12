@@ -15,46 +15,47 @@ const isloading = Helpers.useDynamicRef(false);
 
 
 
-const onInput = (phone:any, phoneObject:any, input:any)=> {
+const onInput = (phone: any, phoneObject: any, input: any) => {
     if (phoneObject?.formatted) {
+        
         userData.phone = phoneObject.formatted;
     }
 }
 
-const  addThumbnail = (media: any)=>{
-  if (media) {
-    userData.thumbnail = media.name;
-  }
+const addThumbnail = (media: any) => {
+    if (media) {
+        userData.thumbnail = media.name;
+    }
 
 }
 
 const userStore = (data: any) => {
-  isloading.value = true;
+    isloading.value = true;
 
-  UserService.store(data)
-    .then((res: any) => {
+    UserService.store(data)
+        .then((res: any) => {
 
-      Helpers.NotifyAlert(200, "User Store", "success", res.data.message);
-      Helpers.router().push({ name: "users" });
-    }).catch((err: any) => {
-      if(err.response.data){
-        errors.value = err.response.data;
-        console.log(errors.value);
-        Helpers.NotifyAlert(err.response.status, "", "error", err.response.data);
-      }
-    });
-  setTimeout(() => {
-    isloading.value = false;
-  }, 1000);
+            Helpers.NotifyAlert(200, "User Store", "success", res.data.message);
+            Helpers.router().push({ name: "users" });
+        }).catch((err: any) => {
+            if (err.response.data) {
+                errors.value = err.response.data;
+                console.log(errors.value);
+                Helpers.NotifyAlert(err.response.status, "", "error", err.response.data);
+            }
+        });
+    setTimeout(() => {
+        isloading.value = false;
+    }, 1000);
 };
-const onSubmit = () => {
+const onSubmit = (type?: string) => {
 
-  if(!editmode.value){
-    userStore(userData);
-  }
-  else {
-    // userUpdate(user);
-  }
+    if (!editmode.value) {
+        userStore(userData);
+    }
+    else {
+        // userUpdate(user);
+    }
 
 };
 
@@ -62,15 +63,28 @@ Helpers.useDynamicOnMounted(async () => {
     await settingsStore.fetchCountries();
     await settingsStore.fetchTimezones();
     await settingsStore.fetchLanguages();
-  console.log("countries",settingsStore.countries);
-  console.log("languages",settingsStore.languages);
-  console.log("timezones",settingsStore.timezones);
+    console.log("countries", settingsStore.countries);
+    console.log("languages", settingsStore.languages);
+    console.log("timezones", settingsStore.timezones);
 });
 
 </script>
 
 <template>
     <div>
+        <div class="row">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-6 row-gap-4">
+          <div class="d-flex flex-column justify-content-center">
+            <h4 class="mb-1">Add a new User</h4>
+            <p class="mb-0">Create a new user profile for your store</p>
+        </div>
+        <div class="d-flex align-content-center flex-wrap gap-4">
+            <button class="btn btn-outline-secondary waves-effect" @click="Helpers.navigateTo('users')">Discard</button>
+            <button class="btn btn-outline-primary waves-effect" >Save draft</button>
+            <button type="submit" class="btn btn-primary waves-effect waves-light" >Publish User</button>
+        </div>
+    </div>
+        </div>
         <div class="card mb-6">
             <!-- Account -->
             <div class="card-body">
@@ -88,52 +102,24 @@ Helpers.useDynamicOnMounted(async () => {
                 </div>
             </div>
             <div class="card-body pt-0">
-                <form method="POST" @submit.prevent="onSubmit"  class="fv-plugins-bootstrap5 fv-plugins-framework">
+                <form method="POST" @submit.prevent="onSubmit" class="fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="row mt-1 g-5">
                         <div class="col-md-6 fv-plugins-icon-container">
-                            <DynamicInput
-                            v-model="userData.first_name"
-                            label="First Name"
-                            name="first_name"
-                            placeholder="John"
-                            type="text"         
-                            :errors="errors"
-                            autofocus
-                            />
+                            <DynamicInput v-model="userData.first_name" label="First Name" name="first_name"
+                                placeholder="John" type="text" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6 fv-plugins-icon-container">
-                           
-                            <DynamicInput
-                            v-model="userData.last_name"
-                            label="Last Name"
-                            name="last_name"
-                            placeholder="Doe"  
-                            type="text"         
-                            :errors="errors"
-                            autofocus
-                            />
+
+                            <DynamicInput v-model="userData.last_name" label="Last Name" name="last_name"
+                                placeholder="Doe" type="text" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6">
-                            <DynamicInput
-                            v-model="userData.email"
-                            label="Email"
-                            name="email"
-                            placeholder="Doe"  
-                            type="text"         
-                            :errors="errors"
-                            autofocus
-                            />
+                            <DynamicInput v-model="userData.email" label="Email" name="email" placeholder="Doe"
+                                type="text" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6">
-                            <DynamicInput 
-                            v-model="userData.organization"
-                            label="Organization"
-                            name="organization"
-                            placeholder="Organization"  
-                            type="text"         
-                            :errors="errors"
-                            autofocus
-                            />
+                            <DynamicInput v-model="userData.organization" label="Organization" name="organization"
+                                placeholder="Organization" type="text" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6">
                             <vue-tel-input :value="userData.phone" @input="onInput"></vue-tel-input>
@@ -142,64 +128,47 @@ Helpers.useDynamicOnMounted(async () => {
 
                         </div>
                         <div class="col-md-6">
-                           
-                            <DynamicInput 
-                            v-model="userData.address"
-                            label="Address"
-                            name="address"
-                            placeholder="Address"  
-                            type="text"         
-                            :errors="errors"
-                            autofocus
-                            />
+
+                            <DynamicInput v-model="userData.address" label="Address" name="address"
+                                placeholder="Address" type="text" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6">
-                            <DynamicInput 
-                            v-model="userData.state"
-                            label="State"
-                            name="state"
-                            placeholder="State"  
-                            type="text"         
-                            :errors="errors"
-                            autofocus
-                            />
+                            <DynamicInput v-model="userData.state" label="State" name="state" placeholder="State"
+                                type="text" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating form-floating-outline">
-                                <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="648391"
-                                    maxlength="8">
-                                <label for="zipCode">Zip Code</label>
-                            </div>
+                            <DynamicInput v-model="userData.zip_code" label="Zip Code" name="zip_code"
+                                placeholder="648391" type="text" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline form-floating-select2">
                                 <!-- @select="getCategory(car.brand)" -->
-                                <VueMultiselect v-model="userData.country"  placeholder="Select Country"
-                                    trackBy="id" label="name" :options="countries">
+                                <VueMultiselect v-model="userData.country" placeholder="Select Country" trackBy="id"
+                                    label="name" :options="countries">
                                 </VueMultiselect>
-                                <label for="country">Country</label>
+                                <!-- <label for="country">Country</label> -->
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
-                                <VueMultiselect v-model="userData.country"  placeholder="Select Country"
-                                    trackBy="id" label="name" :options="countries">
+                                <VueMultiselect v-model="userData.country" placeholder="Select Country" trackBy="id"
+                                    label="name" :options="countries">
                                 </VueMultiselect>
-                                <label for="TagifyLanguageSuggestion">Language</label>
+                                <!-- <label for="TagifyLanguageSuggestion">Language</label> -->
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline form-floating-select2">
-                                <VueMultiselect v-model="userData.country"  placeholder="Select Country"
-                                    trackBy="id" label="name" :options="countries">
+                                <VueMultiselect v-model="userData.country" placeholder="Select Country" trackBy="id"
+                                    label="name" :options="countries">
                                 </VueMultiselect>
-                                <label for="timeZones">Timezone</label>
+                                <!-- <label for="timeZones">Timezone</label> -->
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline form-floating-select2">
-                                <VueMultiselect v-model="userData.country"  placeholder="Select Country"
-                                    trackBy="id" label="name" :options="countries">
+                                <VueMultiselect v-model="userData.country" placeholder="Select Country" trackBy="id"
+                                    label="name" :options="countries">
                                 </VueMultiselect>
                                 <label for="currency">Currency</label>
                             </div>
@@ -218,6 +187,4 @@ Helpers.useDynamicOnMounted(async () => {
     </div>
 </template>
 
-<style>
-
-</style>
+<style></style>
