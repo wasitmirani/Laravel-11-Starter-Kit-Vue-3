@@ -9,6 +9,7 @@
       :placeholder="placeholder"
       :value="modelValue"
       @input="updateValue"
+      @keyup="updateValue"
       :class="{ 'is-invalid': hasError }"
       :autofocus="autofocus"
     />
@@ -61,6 +62,7 @@ export default defineComponent({
   console.log("errors",props.errors.errors);
 
     const updateValue = (event: Event) => {
+     delete props.errors.errors[props.name];
       const target = event.target as HTMLInputElement;
       emit('update:modelValue', target.value);
     };

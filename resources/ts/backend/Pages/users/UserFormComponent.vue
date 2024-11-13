@@ -80,8 +80,8 @@ Helpers.useDynamicOnMounted(async () => {
         </div>
         <div class="d-flex align-content-center flex-wrap gap-4">
             <button class="btn btn-outline-secondary waves-effect" @click="Helpers.navigateTo('users')">Discard</button>
-            <button class="btn btn-outline-primary waves-effect" >Save draft</button>
-            <button type="submit" class="btn btn-primary waves-effect waves-light" >Publish User</button>
+            <button class="btn btn-outline-primary waves-effect" @click="onSubmit('draft')">Save draft</button>
+            <button type="submit" class="btn btn-primary waves-effect waves-light"  @click="onSubmit">Publish User</button>
         </div>
     </div>
         </div>
@@ -175,7 +175,7 @@ Helpers.useDynamicOnMounted(async () => {
                         </div>
                     </div>
                     <div class="mt-6">
-                        <button type="submit" @click="onSumbit"
+                        <button type="submit" @click="onSubmit"
                             class="btn btn-primary me-3 waves-effect waves-light">Save changes</button>
                         <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
                     </div>
