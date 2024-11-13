@@ -115,7 +115,7 @@ Helpers.useDynamicOnMounted(async () => {
                         </div>
                         <div class="col-md-6">
                             <DynamicInput v-model="userData.email" label="Email" name="email" placeholder="Doe"
-                                type="text" :errors="errors" autofocus />
+                                type="email" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6">
                             <DynamicInput v-model="userData.organization" label="Organization" name="organization"

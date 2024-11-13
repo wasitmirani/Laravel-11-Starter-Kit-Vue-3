@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class TimeZone extends Model
 {
     use HasFactory;
+    protected $tabel = "time_zones";
 
-    public function getAllCountries()
+    public function getAllTimeZones()
     {
-        return self::orderBy('countryName')->get();
+        return self::orderBy('gmt_offset')->get();
     }
 }

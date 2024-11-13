@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Country;
 use App\Traits\LogsActivity;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -53,6 +54,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
+    public function getRoles(){
+
+        return DB::table('roles')->orderBy('name', 'ASC')->get();
     }
     // Your service's properties and methods
 
