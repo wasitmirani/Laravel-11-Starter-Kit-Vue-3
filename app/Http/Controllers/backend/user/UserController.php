@@ -68,7 +68,7 @@ class UserController extends Controller
             'email' => 'required|unique:users,email',
             'phone'=>'required|unique:users,phone',
             'thumbnail' => 'required',
-            'role'=>'required',
+            // 'role'=>'required',
             'password' => 'required|confirmed'
         ]);
 

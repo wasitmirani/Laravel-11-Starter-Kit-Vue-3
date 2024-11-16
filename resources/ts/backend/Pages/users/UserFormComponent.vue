@@ -118,6 +118,14 @@ Helpers.useDynamicOnMounted(async () => {
                                 type="email" :errors="errors" autofocus />
                         </div>
                         <div class="col-md-6">
+                            <DynamicInput v-model="userData.password" label="Password" name="password" placeholder="****"
+                                type="password" :errors="errors" autofocus />
+                        </div>
+                        <div class="col-md-6">
+                            <DynamicInput v-model="userData.password_confirmation" label="Confirm Password" name="password_confirmation" placeholder="****"
+                                type="password" :errors="errors" autofocus />
+                        </div>
+                        <div class="col-md-6">
                             <DynamicInput v-model="userData.organization" label="Organization" name="organization"
                                 placeholder="Organization" type="text" :errors="errors" autofocus />
                         </div>
