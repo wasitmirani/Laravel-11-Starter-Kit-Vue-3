@@ -88,10 +88,10 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-            'phone'=> 'required|unique:users,phone,'.$id,
-            'thumbnail' => 'required',
-            'role'=>'required',
-        ]);
+        //     'phone'=> 'required|unique:users,phone,'.$id,
+        //     'thumbnail' => 'required',
+        //     'role'=>'required',
+        // ]);
         $user = $this->userService->update($request->all(), $id);
 
         return responseJson('user updated successfully',['user'=>$user],true);
@@ -101,6 +101,6 @@ class UserController extends Controller
     {
         $this->userService->delete($id);
 
-        return responseJson('user has been deleted successfuly',null,true);
+        return responseJson('user has been deleted successfully',null,true);
     }
 }

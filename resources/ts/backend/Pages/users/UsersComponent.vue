@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BreadcrumbComponent from '../../Components/BreadcrumbComponent.vue';
 import { UserService } from '../../Services/user/UserService';
 import { Helpers } from '../../Utils/Helper';
 import UserTableComponent from './UserTableComponent.vue';
@@ -40,9 +41,10 @@ Helpers.useDynamicOnMounted(() => {
 <template>
     <div>
         <div class="row g-6 mb-6">
-            <h4 class="mb-1">Users List</h4>
+            <!-- <h4 class="mb-1">Users List</h4>
             <p class="mb-6">A role provided access to predefined menus and features so that depending on assigned role
-                an administrator can have access to what user needs.</p>
+                an administrator can have access to what user needs.</p> -->
+                <BreadcrumbComponent active_name="Users"/>
         </div>
         <!-- Users List Table -->
         <div class="row mt-4">
