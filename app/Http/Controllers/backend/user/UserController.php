@@ -21,7 +21,7 @@ class UserController extends Controller
      public function __construct(protected UserService $userService) {
 
     }
-    
+
 
 
     public function updatePassword(Request $request){
@@ -77,7 +77,7 @@ class UserController extends Controller
             'user' => $user,
         ];
         return responseJson('user created successfully',$data,true);
-        
+
     }
 
     public function show($id)
@@ -88,11 +88,6 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        
-         $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email,'.$id,
-            'password' => 'sometimes|confirmed',
             'phone'=> 'required|unique:users,phone,'.$id,
             'thumbnail' => 'required',
             'role'=>'required',

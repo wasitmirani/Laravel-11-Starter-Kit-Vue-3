@@ -12,7 +12,7 @@ const getUsers = () => {
     isloading.value = true;
     UserService.users().then((res) => {
         // Helpers.NotifyAlert(200,'User Data','success',res.data.message);
-    
+
         console.log("res:", users);
         users = res.data.result.users;
         console.log("users:", users);
@@ -32,7 +32,7 @@ function filterData(data:any) {
 }
 Helpers.useDynamicOnMounted(() => {
     getUsers();
-    
+
 });
 
 </script>
@@ -51,9 +51,8 @@ Helpers.useDynamicOnMounted(() => {
                     <div class="row">
 
                         <div class="col-lg-4 col-md-4 col-sm-6">
-                               
-                            <SearchInput label="Search Users" v-on:loading="loadingStart($event)"
-                                v-on:reload="getUsers()" v-on:filterData="filterData($event)" api_url="/category" />
+
+
                             <button class="btn btn-primary waves-effect waves-light"
                                 @click="Helpers.navigateTo('create-user')">
                                 <i class="ri-user-add-fill me-0 me-sm-1 d-inline-block d-sm-none"></i>
@@ -61,18 +60,17 @@ Helpers.useDynamicOnMounted(() => {
                                 <span class="d-none d-sm-inline-block"> Add New User </span></button>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-6 ">
-                            <div class="btn-fr ">
-                                <!-- <router-link :to="{ name: 'create-user' }"
-                                    class="btn btn-primary waves-effect waves-light">Add User</router-link> -->
-
+                            <div class="d-flex align-items-center justify-content-end">
+                                <SearchInput label="Search Users" v-on:loading="loadingStart($event)"
+                                    v-on:reload="getUsers()" v-on:filterData="filterData($event)" api_url="/category" />
                                 <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter"
-                                    class="btn  btn-icon btn-label-primary btn-ml-5 waves-effect">
-                                    <span class="tf-icons ri-filter-2-line "></span>
-
+                                    class="btn btn-icon btn-label-primary ms-2 waves-effect">
+                                    <span class="tf-icons ri-filter-2-line"></span>
                                 </button>
-                                <button  @click="getUsers"  type="button" class="btn btn-icon btn-label-primary waves-effect">
+                                <button @click="getUsers" type="button" class="btn btn-icon btn-label-primary ms-2 waves-effect">
                                     <span class="tf-icons ri-refresh-line"></span>
                                 </button>
+
                             </div>
                         </div>
                     </div>

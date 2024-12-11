@@ -1,17 +1,17 @@
 <template>
-    <div class="form-floating form-floating-outline m-3 margin-lf">
-      <input
-        type="text"
-        class="form-control"
-        id="floatingInput"
-        :placeholder="label"
-        aria-describedby="floatingInputHelp"
-        v-model="query"
-      />
-      <label for="floatingInput" class="margin-lf">{{ label }}</label>
-      <div id="floatingInputHelp" class="form-text">
-        Search characters should be greater than two.
-      </div>
+    <div class="form-floating form-floating-outline m-1 margin-lf">
+        <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            :placeholder="label"
+            aria-describedby="floatingInputHelp"
+            v-model="query"
+        />
+        <label for="floatingInput" class="margin-lf">{{ label }}</label>
+        <!-- <div id="floatingInputHelp" class="form-text">
+            Search characters should be greater than two.
+        </div> -->
     </div>
   </template>
 
